@@ -18,6 +18,7 @@ function Index() {
         <title>Gatsby + Node.js (TypeScript) API</title>
       </Helmet>
       <h1>Gatsby + Node.js (TypeScript) API</h1>
+      <h2>Development</h2>
       <h2>
         Deployed with{' '}
         <a
