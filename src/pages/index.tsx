@@ -6,7 +6,7 @@ function Index() {
   return (
     <main>
       <Helmet>
-        <title>tsuki Lab</title>
+        <title>tsuki lab</title>
       </Helmet>
       <h1>tsuki lab</h1>
       <p>coming soon</p>
