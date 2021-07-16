@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "gatsby",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "gatsby": "^2.18.14",
     "gatsby-image": "^2.0.15",
@@ -9,7 +9,8 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "ress": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.3.2",
