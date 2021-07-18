@@ -60,6 +60,9 @@ const IndexPage = () => {
             <li>
               <a href="https://qiita.com/tsuki-lab" target="_blank">Qiita</a>
             </li>
+            <li>
+              <a href="https://hanetuki.com" target="_blank">ウサギ王国</a>
+            </li>
           </ul>
         </section>
 
