@@ -46,19 +46,19 @@ const IndexPage = () => {
           <h3>links</h3>
           <ul className="sns-list">
             <li>
-              <a href="https://github.com/tsuki-lab">GitHub</a>
+              <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter</a>
             </li>
             <li>
-              <a href="https://twitter.com/hanetsuki_dev">Twitter</a>
+              <a href="https://github.com/tsuki-lab" target="_blank">GitHub</a>
             </li>
             <li>
-              <a href="https://www.resume.id/tsuki_lab">resume</a>
+              <a href="https://www.resume.id/tsuki_lab" target="_blank">resume</a>
             </li>
             <li>
-              <a href="https://zenn.dev/rabbit">zenn</a>
+              <a href="https://zenn.dev/rabbit" target="_blank">zenn</a>
             </li>
             <li>
-              <a href="https://qiita.com/hanetsuki_dev">Qiita</a>
+              <a href="https://qiita.com/tsuki-lab" target="_blank">Qiita</a>
             </li>
           </ul>
         </section>
