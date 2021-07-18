@@ -43,7 +43,7 @@ const IndexPage = () => {
         </section>
 
         <section>
-          <h3>sns</h3>
+          <h3>links</h3>
           <ul className="sns-list">
             <li>
               <a href="https://github.com/tsuki-lab">GitHub</a>
