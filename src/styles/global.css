@@ -1,0 +1,24 @@
+@import '~ress';
+@import url('https://cdn.jsdelivr.net/npm/water.css@2/out/light.css');
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2,
+h3 {
+  border-bottom: 1px #363636 dashed;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+dd {
+  margin-left: 1rem;
+}
+
+ul {
+  list-style: none;
+}
