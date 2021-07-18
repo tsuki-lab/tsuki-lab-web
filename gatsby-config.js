@@ -3,6 +3,7 @@ module.exports = {
     title: 'Gatsby + Node.js (TypeScript) API',
   },
   plugins: [
+    `gatsby-plugin-ts-config`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -10,7 +11,7 @@ module.exports = {
         name: 'Gatsby + Node.js (TypeScript) API',
         short_name: 'Gatsby + Node.js (TypeScript)',
         start_url: '/',
-        icon: 'src/images/gatsby-icon.png',
+        icon: 'src/images/icon.png',
       },
     },
   ],
