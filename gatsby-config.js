@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Node.js (TypeScript) API',
+    title: 'Gatsby + Node.js (TypeScript) API'
   },
   plugins: [
+    `gatsby-plugin-sass`,
     `gatsby-plugin-ts-config`,
     `gatsby-plugin-react-helmet`,
     {
@@ -11,8 +12,8 @@ module.exports = {
         name: 'Gatsby + Node.js (TypeScript) API',
         short_name: 'Gatsby + Node.js (TypeScript)',
         start_url: '/',
-        icon: 'src/images/icon.png',
-      },
-    },
-  ],
+        icon: 'src/images/icon.png'
+      }
+    }
+  ]
 };
