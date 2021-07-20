@@ -2,8 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import '../styles/index.css';
 import authorIcon from '../images/icon.png';
+import { useForm, ValidationError } from '@formspree/react';
 
 const IndexPage = () => {
+  const [state, handleSubmit] = useForm(process.env.FORMSPREE_KEY as string);
+
   return (
     <main>
       <Helmet>
@@ -135,6 +138,39 @@ const IndexPage = () => {
           </ul>
         </section>
 
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+
+        <div>
+          {
+            state.succeeded ? (
+              <p>送信が完了しました。</p>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="email">メールアドレス</label>
+                <input id="email" type="email" name="email" placeholder="info@example.com" />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
+
+                <label htmlFor="title">件名</label>
+                <input id="title" type="text" name="title" />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+                <label htmlFor="message">本文</label>
+                <textarea id="message" name="message" />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+                <button type="submit" disabled={state.submitting}>送信</button>
+              </form>
+            )
+          }
+        </div>
+
+        <p>※ ご返信には最大3営業日ほどいただくことがございます。</p>
+
+        <p>お問い合わせフォームをご利用ではない場合は下記連絡先にご連絡ください</p>
+        <p><a href="mailto:info@tsuki-lab.net">info@tsuki-lab.net</a></p>
       </section>
     </main>
   );
