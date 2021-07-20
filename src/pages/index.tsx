@@ -14,10 +14,12 @@ const IndexPage = () => {
       </Helmet>
 
       <h1>tsuki lab</h1>
+
       <p>イラストレーター兼、webエンジニアのウサギのまとめサイト（制作途中...）</p>
 
       <section>
         <h2>about me</h2>
+
         <div className="author">
           <img className="author-icon" src={authorIcon} alt="" />
           <div>
@@ -25,6 +27,7 @@ const IndexPage = () => {
             <p className="author-title">クリエイター</p>
           </div>
         </div>
+
         <p>1995年生まれ、東京都在住。高校卒業後、4年間はフリーターと同人活動で生計を立てていました。その後、新卒と同じ年代でweb業界へ転職。現在はフロントエンドエンジニアとして、ソリューション事業会社に所属しながら副業やプライベートな開発しています。</p>
 
         <section>
@@ -141,24 +144,24 @@ const IndexPage = () => {
       </section>
 
       <section>
-        <h2>Contact</h2>
+        <h2>contact</h2>
 
-        <div>
+        <div className="contact-form">
           {
             state.succeeded ? (
               <p>送信が完了しました。</p>
             ) : (
               <form onSubmit={handleSubmit}>
                 <label htmlFor="email">メールアドレス</label>
-                <input id="email" type="email" name="email" placeholder="info@example.com" />
+                <input id="email" type="email" name="email" placeholder="info@example.com" required />
                 <ValidationError prefix="Email" field="email" errors={state.errors} />
 
-                <label htmlFor="title">件名</label>
-                <input id="title" type="text" name="title" />
-                <ValidationError prefix="Message" field="message" errors={state.errors} />
+                <label htmlFor="subject">件名</label>
+                <input id="subject" type="text" name="subject" required />
+                <ValidationError prefix="Subject" field="subject" errors={state.errors} />
 
                 <label htmlFor="message">本文</label>
-                <textarea id="message" name="message" rows={7} />
+                <textarea id="message" name="message" rows={7} required />
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
 
                 <button type="submit" disabled={state.submitting}>送信</button>
