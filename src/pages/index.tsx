@@ -158,7 +158,7 @@ const IndexPage = () => {
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
 
                 <label htmlFor="message">本文</label>
-                <textarea id="message" name="message" />
+                <textarea id="message" name="message" rows={7} />
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
 
                 <button type="submit" disabled={state.submitting}>送信</button>
@@ -167,10 +167,19 @@ const IndexPage = () => {
           }
         </div>
 
+        <p>問い合わせフォームをご利用ではない場合は下記連絡先にご連絡ください。</p>
+
+        <ul>
+          <li>
+            <a href="mailto:info@tsuki-lab.net">info@tsuki-lab.net</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter DM</a>
+          </li>
+        </ul>
+
         <p>※ ご返信には最大3営業日ほどいただくことがございます。</p>
 
-        <p>お問い合わせフォームをご利用ではない場合は下記連絡先にご連絡ください</p>
-        <p><a href="mailto:info@tsuki-lab.net">info@tsuki-lab.net</a></p>
       </section>
     </main>
   );

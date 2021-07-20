@@ -1,7 +1,8 @@
-@import 'ress';
+// @import 'ress';
+@import 'sakura.css/scss/sakura';
 
-body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
 }
 
 h2,
@@ -18,6 +19,6 @@ dd {
   margin-left: 1rem;
 }
 
-ul {
-  list-style: none;
+button {
+  border-radius: 4px;
 }
