@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import '../styles/index.css';
+import '../styles/index.scss';
 import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
 
