@@ -25,6 +25,7 @@
   display: flex;
   list-style: none;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .skill-list > li:not(:last-of-type) {
@@ -40,6 +41,7 @@
   display: flex;
   list-style: none;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .sns-list > li:not(:last-of-type) {
