@@ -5,7 +5,7 @@ import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
 
 const IndexPage = () => {
-  const [state, handleSubmit] = useForm(process.env.FORMSPREE_KEY as string);
+  const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
 
   return (
     <main>
@@ -25,7 +25,7 @@ const IndexPage = () => {
             <p className="author-title">クリエイター</p>
           </div>
         </div>
-        <p>東京都在住。高校卒業後、4年間はフリーターと同人活動で生計を立てていました。その後、web業界へ転職。現在はフロントエンドエンジニアとして、ソリューション事業会社に所属しながら副業・プライベートな制作を細々開発しています。</p>
+        <p>1995年生まれ、東京都在住。高校卒業後、4年間はフリーターと同人活動で生計を立てていました。その後、新卒と同じ年代でweb業界へ転職。現在はフロントエンドエンジニアとして、ソリューション事業会社に所属しながら副業やプライベートな開発しています。</p>
 
         <section>
           <h3>skill</h3>
