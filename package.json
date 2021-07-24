@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "tsuki-lab",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "dependencies": {
     "@formspree/react": "^2.2.3",
     "gatsby": "2.25.0",
