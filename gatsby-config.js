@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Node.js (TypeScript) API'
+    title: 'tsuki lab'
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -8,10 +8,24 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Gatsby + Node.js (TypeScript) API',
-        short_name: 'Gatsby + Node.js (TypeScript)',
+        name: 'tsuki lab',
+        short_name: 'tsuki lab',
         start_url: '/',
         icon: 'src/images/icon.png'
+      }
+    },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://zenn.dev/rabbit/feed`,
+        name: `ZennPost`
+      }
+    },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://qiita.com/tsuki-lab/feed`,
+        name: `QiitaPost`
       }
     }
   ]
