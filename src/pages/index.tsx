@@ -1,11 +1,85 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { graphql, PageProps } from "gatsby"
 import { Helmet } from 'react-helmet';
 import '../styles/index.scss';
 import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
+import dayjs from 'dayjs';
+import { useCallback } from 'react';
+import { LoadedImage } from '../components/atoms/LoadedImage';
+import axios from 'axios';
 
-const IndexPage = () => {
+type ZennPostType = {
+  id: string
+  link: string;
+  title: string;
+  pubDate: string;
+  internal: {
+    type: 'FeedZennPost';
+  };
+}
+
+type QiitaPostType = {
+  id: string
+  link: string;
+  title: string;
+  pubDate: string;
+  internal: {
+    type: 'FeedQiitaPost';
+  };
+}
+
+type DataType = {
+  allFeedZennPost: {
+    nodes: ZennPostType[];
+  };
+  allFeedQiitaPost: {
+    nodes: QiitaPostType[];
+  };
+}
+
+export const pageQuery = graphql`
+  query {
+    allFeedZennPost {
+      nodes {
+        id
+        link
+        title
+        pubDate
+        internal {
+          type
+        }
+      }
+    }
+    allFeedQiitaPost {
+      nodes {
+        id
+        link
+        title
+        pubDate
+        internal {
+          type
+        }
+      }
+    }
+  }
+`
+
+const IndexPage = ({data: {allFeedQiitaPost, allFeedZennPost}, ...context}: PageProps<DataType>) => {
   const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
+
+  const articles = useMemo<(ZennPostType|QiitaPostType)[]>(() => {
+    return [...allFeedQiitaPost.nodes, ...allFeedZennPost.nodes]
+    .map(v => ({...v, pubDate: dayjs(v.pubDate).format('YYYY-MM-DD')}))
+    .sort((a, b) => a.pubDate < b.pubDate ? 1: -1)
+    .slice(0, 6)
+  }, [])
+
+  const fetchOGPImage = useCallback(async (url: string): Promise<string> => {
+    type Response = { image: string; site_name: string; title: string; type: string; url: string; }
+    const { data: { image } } = await axios.get<Response>(`/api/ogp?url=${url}`)
+    return image
+  }, []);
 
   return (
     <main>
@@ -152,42 +226,13 @@ const IndexPage = () => {
         <div className="inner-container">
           <h2>articles</h2>
           <ul>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p>サムネイル</p>
-                <p>記事タイトル</p>
-              </a>
-            </li>
+            { articles.map((article) => (
+              <li key={article.id}>
+                <a href={article.link}>
+                  <LoadedImage loader={fetchOGPImage} url={article.link} alt={article.title} width="300" />
+                </a>
+              </li>
+            )) }
           </ul>
           <div>
             more
