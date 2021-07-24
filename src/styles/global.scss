@@ -1,24 +1,16 @@
-// @import 'ress';
-@import 'sakura.css/scss/sakura';
+@import 'ress';
 
-* {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+html {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-h2,
-h3 {
-  border-bottom: 1px #363636 dashed;
-}
-
-dt {
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-dd {
-  margin-left: 1rem;
-}
-
-button {
-  border-radius: 4px;
+section[id] {
+  .inner-container {
+    min-height: 100vh;
+    // min-height: max(100vh, 560px);
+    min-width: 560px;
+    width: 100vmin;
+    margin: auto;
+    padding: 1rem 0;
+  }
 }
