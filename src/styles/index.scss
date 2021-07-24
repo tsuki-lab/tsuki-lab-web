@@ -3,23 +3,24 @@
   align-items: center;
   margin-top: 1.1em;
 
-  &-icon {
-    height: 75px;
-    width: 75px;
-    overflow: hidden;
-    border-radius: 3px;
-    margin-right: 1.2rem;
-    border-radius: 50%;
-  }
+}
 
-  &-name {
-    font-size: 1.2em;
-    margin-bottom: 0;
-  }
+.author-icon {
+  height: 75px;
+  width: 75px;
+  overflow: hidden;
+  border-radius: 3px;
+  margin-right: 1.2rem;
+  border-radius: 50%;
+}
 
-  &-title {
-    font-size: 0.7em;
-  }
+.author-name {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.author-title {
+  font-size: 0.7em;
 }
 
 
