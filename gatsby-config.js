@@ -5,9 +5,9 @@ module.exports = {
     description: 'hanetsukiのポートフォリオサイト'
   },
   plugins: [
-    // `gatsby-plugin-image`,
-    // `gatsby-plugin-sharp`,
-    // `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
