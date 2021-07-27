@@ -53,10 +53,12 @@ $color-white: #fff;
   position: relative;
   width: 330px;
   height: 300px;
-  img {
+  .img-wrap {
     position: absolute;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

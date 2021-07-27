@@ -1,13 +1,10 @@
 import '../styles/index.scss';
 import React, { useMemo } from 'react';
-import authorIcon from '../images/icon.png';
-import coffeeImage_0 from '../images/coffees/coffee_0.png';
-import coffeeImage_1 from '../images/coffees/coffee_1.png';
-import coffeeImage_2 from '../images/coffees/coffee_2.png';
 import dayjs from 'dayjs';
 import { Helmet } from 'react-helmet';
 import { graphql, PageProps } from "gatsby"
 import { useForm, ValidationError } from '@formspree/react';
+import { StaticImage, GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 
 type ZennPostType = {
   id: string
@@ -45,12 +42,10 @@ type DataType = {
   allFile: {
     nodes: {
       id: string;
-      link: string;
       name: string;
-      url: string;
+      childImageSharp: IGatsbyImageData;
       fields: {
         feedId: string;
-        feedImage: string;
       } | null;
     }[];
   };
@@ -90,10 +85,11 @@ export const pageQuery = graphql`
       nodes {
         id
         name
-        url
+        childImageSharp {
+          gatsbyImageData(width: 300)
+        }
         fields {
           feedId
-          feedImage
         }
       }
     }
@@ -137,11 +133,10 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
               <p>from Hanetsuki</p>
             </div>
           </div>
-          {/* <img src={coffeeImage} alt="" width="300" /> */}
           <div className="hero-images">
-            <img src={coffeeImage_0} alt="" />
-            <img src={coffeeImage_1} alt="" />
-            <img src={coffeeImage_2} alt="" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_0.png" alt="" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_1.png" alt="" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_2.png" alt="" />
           </div>
         </div>
       </div>
@@ -152,7 +147,7 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
           <h2>about me</h2>
 
           <div className="author">
-            <img className="author-icon" src={authorIcon} alt="" />
+            <StaticImage className="author-icon" src="../images/icon.png" alt="" />
             <div>
               <p className="author-name">hanetsuki</p>
               <p className="author-title">クリエイター</p>
@@ -282,13 +277,15 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
             {
               articles.map((article) => {
                 const file = allFile.nodes.find(node => node.fields?.feedId === article.id);
-
                 if (!file) return null;
+
+                const imgData = getImage(file.childImageSharp);
+                if (!imgData) return null;
 
                 return (
                   <li key={article.id}>
-                    <a href={article.link}>
-                      <img src={file.url} alt={file.name} width="300" />
+                    <a href={article.link} target="_blank">
+                      <GatsbyImage image={imgData} alt={file.name} />
                     </a>
                   </li>
                 )
