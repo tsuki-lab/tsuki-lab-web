@@ -2,7 +2,7 @@
   "name": "tsuki-lab",
   "version": "0.4.2",
   "private": true,
-  "description": "My Portfolio Site",
+  "description": "hanetsukiのポートフォリオサイト",
   "author": "tsuki-lab",
   "dependencies": {
     "@formspree/react": "^2.2.3",
@@ -12,6 +12,7 @@
     "gatsby-plugin-manifest": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sass": "^3.0.0",
+    "gatsby-source-filesystem": "^3.10.0",
     "gatsby-source-qiita": "^1.2.4",
     "gatsby-source-rss-feed": "^1.2.2",
     "jsdom": "^16.6.0",

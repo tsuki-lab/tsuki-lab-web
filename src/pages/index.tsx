@@ -1,13 +1,15 @@
-import React, { useEffect, useMemo } from 'react';
-import { graphql, PageProps } from "gatsby"
-import { Helmet } from 'react-helmet';
 import '../styles/index.scss';
+import React, { useMemo } from 'react';
 import authorIcon from '../images/icon.png';
-import { useForm, ValidationError } from '@formspree/react';
-import dayjs from 'dayjs';
-import { useCallback } from 'react';
-import { LoadedImage } from '../components/atoms/LoadedImage';
+import coffeeImage_0 from '../images/coffees/coffee_0.png';
+import coffeeImage_1 from '../images/coffees/coffee_1.png';
+import coffeeImage_2 from '../images/coffees/coffee_2.png';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import { Helmet } from 'react-helmet';
+import { graphql, PageProps } from "gatsby"
+import { useCallback } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 type ZennPostType = {
   id: string
@@ -30,16 +32,40 @@ type QiitaPostType = {
 }
 
 type DataType = {
+  site: {
+    siteMetadata: {
+      title: string;
+      description: string;
+    };
+  };
   allFeedZennPost: {
     nodes: ZennPostType[];
   };
   allFeedQiitaPost: {
     nodes: QiitaPostType[];
   };
+  allFile: {
+    nodes: {
+      id: string;
+      link: string;
+      name: string;
+      url: string;
+      fields: {
+        feedId: string;
+        feedImage: string;
+      } | null;
+    }[];
+  }
 }
 
 export const pageQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
     allFeedZennPost {
       nodes {
         id
@@ -62,36 +88,65 @@ export const pageQuery = graphql`
         }
       }
     }
+    allFile {
+      nodes {
+        id
+        name
+        url
+        fields {
+          feedId
+          feedImage
+        }
+      }
+    }
   }
 `
 
-const IndexPage = ({data: {allFeedQiitaPost, allFeedZennPost}, ...context}: PageProps<DataType>) => {
+const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZennPost, allFile}, ...context}: PageProps<DataType>) => {
   const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
 
   const articles = useMemo<(ZennPostType|QiitaPostType)[]>(() => {
     return [...allFeedQiitaPost.nodes, ...allFeedZennPost.nodes]
-    .map(v => ({...v, pubDate: dayjs(v.pubDate).format('YYYY-MM-DD')}))
-    .sort((a, b) => a.pubDate < b.pubDate ? 1: -1)
-    .slice(0, 6)
-  }, [])
-
-  const fetchOGPImage = useCallback(async (url: string): Promise<string> => {
-    type Response = { image: string; site_name: string; title: string; type: string; url: string; }
-    const { data: { image } } = await axios.get<Response>(`/api/ogp?url=${url}`)
-    return image
+      .map(v => ({...v, pubDate: dayjs(v.pubDate).format('YYYY-MM-DD')}))
+      .sort((a, b) => a.pubDate < b.pubDate ? 1: -1)
+      .slice(0, 6);
   }, []);
 
   return (
     <main>
       <Helmet>
-        <title>tsuki lab</title>
+        <title>{siteMetadata.title}</title>
+        <meta name="description" content={siteMetadata.description} />
       </Helmet>
 
-      <section id="hero">
+      <header>
+        <h1 className="site-title">tsuki lab</h1>
+        <nav>
+          <ul>
+            <li><a href="#about">about</a></li>
+            <li><a href="#activity">activity</a></li>
+            <li><a href="#contact">contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="hero" className="hero">
         <div className="inner-container">
-          <h1>tsuki lab</h1>
+          <div className="hero-message">
+            <p className="hero-message__title">Welcome to Tsuki Lab.</p>
+            <div className="hero-message__body">
+              <p>This is a site that contains my memorandum of <br /> "living by doing what you like".</p>
+              <p>from Hanetsuki</p>
+            </div>
+          </div>
+          {/* <img src={coffeeImage} alt="" width="300" /> */}
+          <div className="hero-images">
+            <img src={coffeeImage_0} alt="" />
+            <img src={coffeeImage_1} alt="" />
+            <img src={coffeeImage_2} alt="" />
+          </div>
         </div>
-      </section>
+      </div>
 
       <section id="about">
         <div className="inner-container">
@@ -226,13 +281,19 @@ const IndexPage = ({data: {allFeedQiitaPost, allFeedZennPost}, ...context}: Page
         <div className="inner-container">
           <h2>articles</h2>
           <ul>
-            { articles.map((article) => (
-              <li key={article.id}>
-                <a href={article.link}>
-                  <LoadedImage loader={fetchOGPImage} url={article.link} alt={article.title} width="300" />
-                </a>
-              </li>
-            )) }
+            { articles.map((article) => {
+              const file = allFile.nodes.find(node => node.fields?.feedId === article.id);
+
+              if (!file) return null;
+
+              return (
+                <li key={article.id}>
+                  <a href={article.link}>
+                    <img src={file.url} alt={file.name} width="300" />
+                  </a>
+                </li>
+              )
+            }) }
           </ul>
           <div>
             more
