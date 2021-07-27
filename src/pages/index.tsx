@@ -4,11 +4,9 @@ import authorIcon from '../images/icon.png';
 import coffeeImage_0 from '../images/coffees/coffee_0.png';
 import coffeeImage_1 from '../images/coffees/coffee_1.png';
 import coffeeImage_2 from '../images/coffees/coffee_2.png';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { Helmet } from 'react-helmet';
 import { graphql, PageProps } from "gatsby"
-import { useCallback } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 type ZennPostType = {
@@ -55,7 +53,7 @@ type DataType = {
         feedImage: string;
       } | null;
     }[];
-  }
+  };
 }
 
 export const pageQuery = graphql`
@@ -281,19 +279,21 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
         <div className="inner-container">
           <h2>articles</h2>
           <ul>
-            { articles.map((article) => {
-              const file = allFile.nodes.find(node => node.fields?.feedId === article.id);
+            {
+              articles.map((article) => {
+                const file = allFile.nodes.find(node => node.fields?.feedId === article.id);
 
-              if (!file) return null;
+                if (!file) return null;
 
-              return (
-                <li key={article.id}>
-                  <a href={article.link}>
-                    <img src={file.url} alt={file.name} width="300" />
-                  </a>
-                </li>
-              )
-            }) }
+                return (
+                  <li key={article.id}>
+                    <a href={article.link}>
+                      <img src={file.url} alt={file.name} width="300" />
+                    </a>
+                  </li>
+                )
+              })
+            }
           </ul>
           <div>
             more
