@@ -24,8 +24,7 @@ async function createFileNodeForFeedImage({ actions: { createNode, createNodeFie
       cache,
       store,
       createNode: createNode,
-      createNodeId: createNodeId,
-      name: node.title
+      createNodeId: createNodeId
     });
 
     await createNodeField({
