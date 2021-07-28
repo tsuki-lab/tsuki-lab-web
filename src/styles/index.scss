@@ -3,43 +3,6 @@ $color-main: #d9ddde;
 $color-black: #1f3134;
 $color-white: #fff;
 
-.site-title {
-  font-size: 2.3rem;
-  text-decoration: underline;
-  text-underline-offset: .6rem;
-  text-decoration-thickness: 1px;
-  margin-bottom: 0rem;
-  color: $color-accent;
-}
-
-
-.hero {
-  .inner-container {
-    background-color: $color-main;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 0;
-  }
-
-  .hero-message {
-    margin-right: 7rem;
-  }
-
-  .hero-message__title {
-    color: $color-black;
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    letter-spacing: 1.9px;
-    margin-bottom: 1rem;
-  }
-
-  .hero-message__body {
-    color: $color-white;
-    line-height: 1.5;
-  }
-}
-
 .author-icon {
   height: 75px;
   width: 75px;

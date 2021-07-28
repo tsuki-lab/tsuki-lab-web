@@ -30,14 +30,14 @@ async function createFileNodeForFeedImage({ actions: { createNode, createNodeFie
 
     await createNodeField({
       node: fileNode,
-      name: 'feedImage',
-      value: 'true'
+      name: 'feedId',
+      value: node.id
     });
 
     await createNodeField({
       node: fileNode,
-      name: 'feedId',
-      value: node.id
+      name: 'feedIsoDate',
+      value: node.isoDate
     });
 
     return fileNode;

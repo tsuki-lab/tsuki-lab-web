@@ -5,104 +5,14 @@ import { Helmet } from 'react-helmet';
 import { graphql, PageProps } from "gatsby"
 import { useForm, ValidationError } from '@formspree/react';
 import { StaticImage, GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
-
-type ZennPostType = {
-  id: string
-  link: string;
-  title: string;
-  pubDate: string;
-  internal: {
-    type: 'FeedZennPost';
-  };
-}
-
-type QiitaPostType = {
-  id: string
-  link: string;
-  title: string;
-  pubDate: string;
-  internal: {
-    type: 'FeedQiitaPost';
-  };
-}
-
-type DataType = {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-    };
-  };
-  allFeedZennPost: {
-    nodes: ZennPostType[];
-  };
-  allFeedQiitaPost: {
-    nodes: QiitaPostType[];
-  };
-  allFile: {
-    nodes: {
-      id: string;
-      name: string;
-      childImageSharp: IGatsbyImageData;
-      fields: {
-        feedId: string;
-      } | null;
-    }[];
-  };
-}
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-    allFeedZennPost {
-      nodes {
-        id
-        link
-        title
-        pubDate
-        internal {
-          type
-        }
-      }
-    }
-    allFeedQiitaPost {
-      nodes {
-        id
-        link
-        title
-        pubDate
-        internal {
-          type
-        }
-      }
-    }
-    allFile {
-      nodes {
-        id
-        name
-        childImageSharp {
-          gatsbyImageData(width: 300)
-        }
-        fields {
-          feedId
-        }
-      }
-    }
-  }
-`
+import { AuthorIcon, HeroInnerContainer, HeroMessageBody, HeroMessageTitle, HeroMessageWrap, SiteTitle } from '../elements/pages/index.element';
 
 const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZennPost, allFile}, ...context}: PageProps<DataType>) => {
   const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
 
   const articles = useMemo<(ZennPostType|QiitaPostType)[]>(() => {
     return [...allFeedQiitaPost.nodes, ...allFeedZennPost.nodes]
-      .map(v => ({...v, pubDate: dayjs(v.pubDate).format('YYYY-MM-DD')}))
-      .sort((a, b) => a.pubDate < b.pubDate ? 1: -1)
+      .sort((a, b) => a.isoDate < b.isoDate ? 1: -1)
       .slice(0, 6);
   }, []);
 
@@ -114,7 +24,7 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
       </Helmet>
 
       <header>
-        <h1 className="site-title">tsuki lab</h1>
+        <SiteTitle>tsuki lab</SiteTitle>
         <nav>
           <ul>
             <li><a href="#about">about</a></li>
@@ -125,20 +35,21 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
       </header>
 
       <div id="hero" className="hero">
-        <div className="inner-container">
-          <div className="hero-message">
-            <p className="hero-message__title">Welcome to Tsuki Lab.</p>
-            <div className="hero-message__body">
-              <p>This is a site that contains my memorandum of <br /> "living by doing what you like".</p>
-              <p>from Hanetsuki</p>
-            </div>
-          </div>
+        <HeroInnerContainer>
+          <HeroMessageWrap>
+            <HeroMessageTitle>Welcome to Tsuki Lab.</HeroMessageTitle>
+            <HeroMessageBody>
+              This is a site that contains my memorandum of <br />
+              "living by doing what you like". <br />
+              from Hanetsuki
+            </HeroMessageBody>
+          </HeroMessageWrap>
           <div className="hero-images">
-            <StaticImage className="img-wrap" src="../images/coffees/coffee_0.png" alt="" />
-            <StaticImage className="img-wrap" src="../images/coffees/coffee_1.png" alt="" />
-            <StaticImage className="img-wrap" src="../images/coffees/coffee_2.png" alt="" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_0.png" alt="" placeholder="none" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_1.png" alt="" placeholder="none" />
+            <StaticImage className="img-wrap" src="../images/coffees/coffee_2.png" alt="" placeholder="none" />
           </div>
-        </div>
+        </HeroInnerContainer>
       </div>
 
       <section id="about">
@@ -147,7 +58,9 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
           <h2>about me</h2>
 
           <div className="author">
-            <StaticImage className="author-icon" src="../images/icon.png" alt="" />
+
+
+            <AuthorIcon src="../images/icon.png" alt="" />
             <div>
               <p className="author-name">hanetsuki</p>
               <p className="author-title">クリエイター</p>
@@ -285,7 +198,7 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
                 return (
                   <li key={article.id}>
                     <a href={article.link} target="_blank">
-                      <GatsbyImage image={imgData} alt={file.name} />
+                      <GatsbyImage image={imgData} alt={article.title} />
                     </a>
                   </li>
                 )
@@ -345,3 +258,89 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
 }
 
 export default IndexPage;
+
+type ZennPostType = {
+  id: string
+  link: string;
+  title: string;
+  isoDate: string;
+  internal: {
+    type: 'FeedZennPost';
+  };
+}
+
+type QiitaPostType = {
+  id: string
+  link: string;
+  title: string;
+  isoDate: string;
+  internal: {
+    type: 'FeedQiitaPost';
+  };
+}
+
+type DataType = {
+  site: {
+    siteMetadata: {
+      title: string;
+      description: string;
+    };
+  };
+  allFeedZennPost: {
+    nodes: ZennPostType[];
+  };
+  allFeedQiitaPost: {
+    nodes: QiitaPostType[];
+  };
+  allFile: {
+    nodes: {
+      childImageSharp: IGatsbyImageData;
+      fields: {
+        feedId: string;
+      };
+    }[];
+  };
+}
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+    allFeedZennPost {
+      nodes {
+        id
+        link
+        title
+        isoDate
+        internal {
+          type
+        }
+      }
+    }
+    allFeedQiitaPost {
+      nodes {
+        id
+        link
+        title
+        isoDate
+        internal {
+          type
+        }
+      }
+    }
+    allFile(filter: {fields: {feedId: {regex: "/.+/"}}}) {
+      nodes {
+        childImageSharp {
+          gatsbyImageData(width: 300)
+        }
+        fields {
+          feedId
+        }
+      }
+    }
+  }
+`
