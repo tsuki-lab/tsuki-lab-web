@@ -1,3 +1,5 @@
+const path = require('path');
+
 require('dotenv').config();
 module.exports = {
   siteMetadata: {
@@ -5,6 +7,12 @@ module.exports = {
     description: 'hanetsukiのポートフォリオサイト'
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-root-import`,
+      options: {
+        '@': path.join(__dirname, 'src')
+      }
+    },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
