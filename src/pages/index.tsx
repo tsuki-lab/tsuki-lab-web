@@ -1,6 +1,5 @@
 import '../styles/index.scss';
 import React, { useMemo } from 'react';
-import dayjs from 'dayjs';
 import { Helmet } from 'react-helmet';
 import { graphql, PageProps } from "gatsby"
 import { useForm, ValidationError } from '@formspree/react';
@@ -15,6 +14,12 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
       .sort((a, b) => a.isoDate < b.isoDate ? 1: -1)
       .slice(0, 6);
   }, []);
+
+  const authorIcon = useMemo(() => {
+    const target = allFile.nodes.find((v) => v.name === 'icon')
+    if (!target) return
+    return getImage(target.childImageSharp)
+  }, [])
 
   return (
     <main>
@@ -58,9 +63,7 @@ const IndexPage = ({data: {site : { siteMetadata }, allFeedQiitaPost, allFeedZen
           <h2>about me</h2>
 
           <div className="author">
-
-
-            <AuthorIcon src="../images/icon.png" alt="" />
+            {authorIcon && <AuthorIcon image={authorIcon} alt="" />}
             <div>
               <p className="author-name">hanetsuki</p>
               <p className="author-title">クリエイター</p>
@@ -294,10 +297,11 @@ type DataType = {
   };
   allFile: {
     nodes: {
+      name: string;
       childImageSharp: IGatsbyImageData;
       fields: {
         feedId: string;
-      };
+      } | null;
     }[];
   };
 }
@@ -332,8 +336,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    allFile(filter: {fields: {feedId: {regex: "/.+/"}}}) {
+    allFile {
       nodes {
+        name
         childImageSharp {
           gatsbyImageData(width: 300)
         }

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { InnerContainer } from "../base.element"
 import { STYLE_COLOR } from "../variables"
 
@@ -37,7 +37,7 @@ export const HeroMessageBody = styled.p({
   lineHeight: 1.5,
 })
 
-export const AuthorIcon = styled(StaticImage, {})({
+export const AuthorIcon = styled(GatsbyImage, {})({
   height: '75px',
   width: '75px',
   overflow: 'hidden',
