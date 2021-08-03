@@ -1,7 +1,6 @@
-import { injectGlobal } from '@emotion/css'
-import 'ress';
+import { css } from '@emotion/react';
 
-injectGlobal`
+export const global = css`
   html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     scroll-behavior: smooth;
