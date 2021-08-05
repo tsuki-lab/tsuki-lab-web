@@ -1,8 +1,10 @@
-import { useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
+import styled from '@emotion/styled';
+import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { Sidebar } from './Sidebar';
 
 type Element = JSX.IntrinsicElements['div'];
 type Layout = {};
@@ -17,7 +19,7 @@ type Query = {
   };
 }
 
-export const Layout: React.FC<Props> = ({children, ...props}) => {
+const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
   const { site: { siteMetadata: { title, ...metaList } } } = useStaticQuery<Query>(graphql`
@@ -45,9 +47,35 @@ export const Layout: React.FC<Props> = ({children, ...props}) => {
 
       <Header />
 
-      {children}
+      <Sidebar />
+
+      <main>{children}</main>
 
       <Footer />
     </div>
   )
 }
+
+export const Layout = styled(Component)`
+  position: relative;
+
+  ${Header} {
+    padding-right: 3rem;
+    padding-left: 3rem;
+    z-index: 100;
+    position: relative;
+  }
+
+  ${Sidebar} {
+    position: absolute;
+    right: 1.5rem;
+    top: 0;
+    bottom: 0;
+    padding-top: calc(5rem);
+  }
+
+  main {
+    padding-right: 3.4rem;
+  }
+`
+

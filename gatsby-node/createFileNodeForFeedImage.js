@@ -39,6 +39,12 @@ async function createFileNodeForFeedImage({ actions: { createNode, createNodeFie
       value: node.isoDate
     });
 
+    await createNodeField({
+      node: fileNode,
+      name: 'feedImage',
+      value: true
+    });
+
     return fileNode;
   }));
 };

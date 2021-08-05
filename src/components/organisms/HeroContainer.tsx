@@ -16,12 +16,10 @@ const Component: React.FC<Props> = ({children, ...props}) => {
       <Container>
         <Inner>
           <HeroMessage
-            title="Welcome to Tsuki Lab."
-            body={`
-              This is my portfolio site
+            title="hanetsuki's portfolio web"
+            body={`This is my portfolio site
               that advocates
-              "Do what I like and live".
-            `}
+              "Do what I like and live".`}
           />
           <CoffeeSymbol/>
         </Inner>
