@@ -5,6 +5,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  min-width: 1100px;
+}
+
 ul {
   list-style: none;
 }
