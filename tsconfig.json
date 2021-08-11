@@ -1,6 +1,7 @@
 {
   "include": ["./src/**/*"],
   "compilerOptions": {
+    "jsxImportSource": "@emotion/react",
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "es2017"],

@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { STYLE_COLOR } from "@/styles/variables.style"
 
 const SiteTitle = styled.h1`
-  color: ${STYLE_COLOR.__ACCENT};
+  color: ${STYLE_COLOR.__BASE};
   font-size: 3.3rem;
   margin-bottom: 0rem;
   height: 1.15em;

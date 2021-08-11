@@ -4,8 +4,8 @@ import { AuthorIcon } from '@/components/molecules/AuthorIcon';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { Heading2, Heading3 } from '../atoms/Heading';
-import LaunchIcon from '@material-ui/icons/Launch';
 import { SkillIcon } from '../molecules/SkillIcon';
+import { LaunchLink } from '../molecules/LaunchLink';
 
 type Element = JSX.IntrinsicElements['div'];
 type AboutContainer = {};
@@ -42,7 +42,7 @@ const Component: React.FC<Props> = ({children, ...props}) => {
               ))}
             </Skills>
 
-            <a href="https://www.resume.id/tsuki_lab" target="_blank">more details<LaunchIcon /></a>
+            <LaunchLink href="https://www.resume.id/tsuki_lab" target="_blank">more details</LaunchLink>
           </SkillContainer>
         </Inner>
       </Container>
@@ -88,11 +88,15 @@ const AuthorMessage = styled.p`
 
 const SkillContainer = styled.section`
   margin-top: 3rem;
+  ${LaunchLink} {
+    display: inline-block;
+    margin-top: .4rem;
+  }
 `
 
 const Skills = styled.ul`
   display: flex;
-  padding-bottom: 1rem;
+  padding-bottom: 1.3rem;
   gap: 1.1rem;
 `
 

@@ -1,14 +1,16 @@
 import React from 'react';
+import styled from "@emotion/styled"
 
-type Element = JSX.IntrinsicElements['div'];
+type Element = JSX.IntrinsicElements['footer'];
 type Footer = {};
 type Props = Element & Footer;
 
-export const Footer: React.FC<Props> = ({children, ...props}) => {
+const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
   return (
-    <div {...restReact}>
-      {children}
-    </div>
+    <footer {...restReact}>
+    </footer>
   )
 }
+
+export const Footer = styled(Component)``

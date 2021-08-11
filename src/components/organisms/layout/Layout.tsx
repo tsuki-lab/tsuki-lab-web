@@ -79,5 +79,9 @@ export const Layout = styled(Component)`
   main {
     padding-right: 3.4rem;
   }
+
+  ${Footer} {
+    padding-top: 4rem;
+  }
 `
 
