@@ -15,9 +15,6 @@ module.exports = {
     },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-emotion`,
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,7 +22,9 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
-    `gatsby-transformer-yaml`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -33,6 +32,7 @@ module.exports = {
         path: `${__dirname}/src/data/`,
       },
     },
+    `gatsby-transformer-yaml`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,

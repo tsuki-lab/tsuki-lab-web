@@ -2,8 +2,6 @@ import React from 'react';
 import { Container, Inner, Wrapper } from '../atoms/Container';
 import { AuthorIcon } from '@/components/molecules/AuthorIcon';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useMemo } from 'react';
-import { getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import styled from '@emotion/styled';
 import { Heading2, Heading3 } from '../atoms/Heading';
 import LaunchIcon from '@material-ui/icons/Launch';
@@ -16,9 +14,7 @@ type Props = Element & AboutContainer;
 const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
-  const { file, dataYaml: { profile } }: DataType = useStaticQuery(query);
-
-  const authorIcon = useMemo(() => getImage(file.childImageSharp), [file])
+  const { dataYaml: { profile } }: DataType = useStaticQuery(query);
 
   return (
     <Wrapper {...restReact}>
@@ -28,7 +24,7 @@ const Component: React.FC<Props> = ({children, ...props}) => {
           <Heading2>about me</Heading2>
 
           <Author className="author">
-            {authorIcon && <AuthorIcon />}
+            <AuthorIcon />
             <div className="author-info">
               <p className="author-name">hanetsuki</p>
               <p className="author-title">クリエイター</p>
@@ -101,9 +97,6 @@ const Skills = styled.ul`
 `
 
 type DataType = {
-  file: {
-    childImageSharp: IGatsbyImageData;
-  };
   dataYaml: {
     profile: {
       message: string;
@@ -116,11 +109,6 @@ type DataType = {
 
 const query = graphql`
   query {
-    file(name: {eq: "icon"}) {
-      childImageSharp {
-        gatsbyImageData
-      }
-    }
     dataYaml {
       profile {
         message
