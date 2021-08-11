@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Inner, Wrapper } from '../atoms/Container';
-import { AuthorIcon } from '@/components/atoms/AuthorIcon';
+import { AuthorIcon } from '@/components/molecules/AuthorIcon';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useMemo } from 'react';
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image';
