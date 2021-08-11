@@ -4,15 +4,19 @@ import { AuthorIcon } from '@/components/atoms/AuthorIcon';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useMemo } from 'react';
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import styled from '@emotion/styled';
+import { Heading2, Heading3 } from '../atoms/Heading';
+import LaunchIcon from '@material-ui/icons/Launch';
+import { SkillIcon } from '../molecules/SkillIcon';
 
 type Element = JSX.IntrinsicElements['div'];
 type AboutContainer = {};
 type Props = Element & AboutContainer;
 
-export const AboutContainer: React.FC<Props> = ({children, ...props}) => {
+const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
-  const { file }: DataType = useStaticQuery(query)
+  const { file, dataYaml: { profile } }: DataType = useStaticQuery(query);
 
   const authorIcon = useMemo(() => getImage(file.childImageSharp), [file])
 
@@ -21,137 +25,92 @@ export const AboutContainer: React.FC<Props> = ({children, ...props}) => {
       <Container>
         <Inner>
 
-          <h2>about me</h2>
+          <Heading2>about me</Heading2>
 
-          <div className="author">
-            {authorIcon && <AuthorIcon image={authorIcon} alt="" />}
-            <div>
+          <Author className="author">
+            {authorIcon && <AuthorIcon />}
+            <div className="author-info">
               <p className="author-name">hanetsuki</p>
               <p className="author-title">クリエイター</p>
             </div>
-          </div>
+          </Author>
 
-          <p>1995年生まれ、東京都在住。高校卒業後、4年間はフリーターと同人活動で生計を立てていました。その後、新卒と同じ年代でweb業界へ転職。現在はフロントエンドエンジニアとして、ソリューション事業会社に所属しながら副業やプライベートな開発しています。</p>
+          <AuthorMessage>{profile.message}</AuthorMessage>
 
-          <section>
-            <h3>skill</h3>
-            <ul className="skill-list">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>Sass</li>
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>Vue.js</li>
-              <li>Nuxt.js</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>Gatsby</li>
-              <li>jQuery</li>
-              <li>Node.js</li>
-            </ul>
-          </section>
+          <SkillContainer>
+            <Heading3>skill</Heading3>
 
-          <section>
-            <h3>links</h3>
-            <ul className="sns-list">
-              <li>
-                <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter</a>
-              </li>
-              <li>
-                <a href="https://github.com/tsuki-lab" target="_blank">GitHub</a>
-              </li>
-              <li>
-                <a href="https://www.resume.id/tsuki_lab" target="_blank">resume</a>
-              </li>
-              <li>
-                <a href="https://zenn.dev/rabbit" target="_blank">zenn</a>
-              </li>
-              <li>
-                <a href="https://qiita.com/tsuki-lab" target="_blank">Qiita</a>
-              </li>
-              <li>
-                <a href="https://hanetuki.com" target="_blank">ウサギ王国</a>
-              </li>
-            </ul>
-          </section>
+            <Skills>
+              {profile.skills.map((skill) => (
+                <SkillIcon key={skill.slug} tag="li" slug={skill.slug} />
+              ))}
+            </Skills>
 
-          <section>
-            <h3>job history</h3>
-            <ul>
-              <li>
-                <dl>
-                  <dt>ECサイト開発業務</dt>
-                  <dd>チーム開発/ フロントエンドPG</dd>
-                  <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>メディアサイト開発業務</dt>
-                  <dd>チーム開発/ フロントエンドPG</dd>
-                  <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>ソーシャルゲーム開発業務</dt>
-                  <dd>チーム開発/ アウトゲームPG</dd>
-                  <dd>Vue.js, NodeJs, Jenkins, Redis, MongoDB</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>フリーランス人材メディアサービス開発業務</dt>
-                  <dd>チーム開発/ フロントエンド開発リーダー</dd>
-                  <dd>Laravel, Vue.js, MySQL</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>大手電子機器メーカーのマニュアル管理システム開発業務</dt>
-                  <dd>チーム開発/ PM補佐・フロントエンド開発リーダー</dd>
-                  <dd>AWS, Docker, Rails, TypeScript, Vue.js, MySQL</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>PR支援会社Webサイト開発業務</dt>
-                  <dd>個人開発</dd>
-                  <dd>microCMS, Next.js, GitHubActions</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>保育メディアサイト開発業務</dt>
-                  <dd>個人開発</dd>
-                  <dd>Docker, WordPress, PHP, JavaScript, CSS, HTML</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>撮影会社Webサイト開発業務</dt>
-                  <dd>個人開発</dd>
-                  <dd>HTML, TypeScript, CSS</dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>Webアプリケーション開発</dt>
-                  <dd>チーム開発/ フロントエンド開発リーダー</dd>
-                  <dd>Docker, Next.js, Rails, redis, MySQL, AWS, Sprite, Swagger</dd>
-                </dl>
-              </li>
-            </ul>
-          </section>
+            <a href="https://www.resume.id/tsuki_lab" target="_blank">more details<LaunchIcon /></a>
+          </SkillContainer>
         </Inner>
       </Container>
     </Wrapper>
   )
 }
 
+export const AboutContainer = styled(Component)`
+  margin-top: 4rem;
+  ${Heading2} {
+    margin-bottom: 1rem;
+  }
+  ${Heading3} {
+    margin-bottom: 1rem;
+  }
+`
+
+const Author = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${AuthorIcon} {
+    height: 75px;
+    width: 75px;
+    margin-right: 1.2rem;
+  }
+
+  .author-info {
+    margin-top: .5rem;
+  }
+  .author-name {
+    font-size: 1.3rem;
+  }
+  .author-title {
+    font-size: .8rem;
+  }
+`
+
+const AuthorMessage = styled.p`
+  white-space: pre;
+  margin-top: 1rem;
+`
+
+const SkillContainer = styled.section`
+  margin-top: 3rem;
+`
+
+const Skills = styled.ul`
+  display: flex;
+  padding-bottom: 1rem;
+  gap: 1.1rem;
+`
+
 type DataType = {
   file: {
     childImageSharp: IGatsbyImageData;
+  };
+  dataYaml: {
+    profile: {
+      message: string;
+      skills: {
+        slug: string;
+      }[];
+    };
   };
 }
 
@@ -160,6 +119,14 @@ const query = graphql`
     file(name: {eq: "icon"}) {
       childImageSharp {
         gatsbyImageData
+      }
+    }
+    dataYaml {
+      profile {
+        message
+        skills {
+          slug
+        }
       }
     }
   }

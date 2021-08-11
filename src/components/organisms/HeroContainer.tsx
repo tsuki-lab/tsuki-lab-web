@@ -32,7 +32,7 @@ export const HeroContainer = styled(Component)`
   margin-top: 3.5rem;
 
   ${Container} {
-    padding-bottom: 10rem;
+    /* padding-bottom: 10rem; */
 
     ${HeroMessage} {
       margin-top: 6.7rem;

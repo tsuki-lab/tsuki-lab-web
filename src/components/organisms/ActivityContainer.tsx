@@ -1,13 +1,15 @@
+import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import React, { useMemo } from 'react';
 import { Container, Inner, Wrapper } from '../atoms/Container';
+import { Heading2 } from '../atoms/Heading';
 
 type Element = JSX.IntrinsicElements['div'];
 type ActivityContainer = {};
 type Props = Element & ActivityContainer;
 
-export const ActivityContainer: React.FC<Props> = ({children, ...props}) => {
+const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
   const {allFeedQiitaPost, allFeedZennPost, allFile}: DataType = useStaticQuery(query)
@@ -22,8 +24,8 @@ export const ActivityContainer: React.FC<Props> = ({children, ...props}) => {
     <Wrapper {...restReact}>
       <Container>
         <Inner>
-          <h2>activity</h2>
-          <ul>
+          <Heading2>activity</Heading2>
+          <Articles>
             {
               articles.map((article) => {
                 const file = allFile.nodes.find(node => node.fields?.feedId === article.id);
@@ -41,12 +43,27 @@ export const ActivityContainer: React.FC<Props> = ({children, ...props}) => {
                 )
               })
             }
-          </ul>
+          </Articles>
         </Inner>
       </Container>
     </Wrapper>
   )
 }
+
+export const ActivityContainer = styled(Component)`
+  margin-top: 4rem;
+  ${Heading2} {
+    margin-bottom: 1rem;
+  }
+`
+
+const Articles = styled.ul`
+  display: flex;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+`
 
 type ZennPostType = {
   id: string

@@ -1,0 +1,15 @@
+profile:
+  message: "1995年生まれ。東京都在住。\n2018年にweb業界へ転職し、現在はソリューション事業会社にwebエンジニアとして所属、副業やプライベートな開発しています。\nデザインとテクノロジーの調和と可能性を夢見るクリエイターです。"
+
+  skills:
+    - slug: html5
+    - slug: css3
+    - slug: sass
+    - slug: javascript
+    - slug: typescript
+    - slug: vuedotjs
+    - slug: nuxtdotjs
+    - slug: react
+    - slug: nextdotjs
+    - slug: jquery
+    - slug: nodedotjs

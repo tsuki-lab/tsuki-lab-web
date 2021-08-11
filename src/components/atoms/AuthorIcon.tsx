@@ -1,10 +1,12 @@
+import React from "react";
 import styled from "@emotion/styled";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 
-export const AuthorIcon = styled(GatsbyImage)`
-  height: 75px;
-  width: 75px;
+const Component: React.FC = (props) => (
+  <StaticImage src="../../images/icon.png" alt="" {...props}/>
+)
+
+export const AuthorIcon = styled(Component)`
   overflow: hidden;
-  margin-right: 1.2rem;
   border-radius: 50%;
 `

@@ -58,6 +58,8 @@ const Component: React.FC<Props> = ({children, ...props}) => {
 
 export const Layout = styled(Component)`
   position: relative;
+  max-width: 1300px;
+  margin: auto;
 
   ${Header} {
     padding-right: 3rem;

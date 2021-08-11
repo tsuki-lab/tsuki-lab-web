@@ -6,13 +6,18 @@ import simpleIcons from 'simple-icons';
 
 type Props = {
   slug: string;
-  css?: SerializedStyles
+  css?: SerializedStyles;
+  hex?: boolean|string;
 } & JSX.IntrinsicElements['svg']
 
-const Component: React.FC<Props> = ({slug, ...restProps}) => {
+const Component: React.FC<Props> = ({slug, hex, ...restProps}) => {
   const icon = useMemo(() => simpleIcons.get(slug), [slug])
+  const color = useMemo(() => {
+    if (typeof hex === 'string') return hex
+    if (hex === true) return icon.hex
+  }, [icon, hex])
   return (
-    <svg role="img" viewBox="0 0 24 24" {...restProps}>
+    <svg role="img" viewBox="0 0 24 24" style={hex ? {fill: `#${color}`} : undefined} {...restProps}>
       <title>{icon.title}</title>
       <path d={icon.path} />
     </svg>

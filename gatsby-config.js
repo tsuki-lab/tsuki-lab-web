@@ -13,6 +13,7 @@ module.exports = {
         '@': path.join(__dirname, 'src')
       }
     },
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-emotion`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -22,6 +23,14 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
+      },
+    },
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data/`,
       },
     },
     `gatsby-plugin-react-helmet`,
