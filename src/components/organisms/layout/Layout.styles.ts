@@ -12,5 +12,4 @@ export const header = css`
 `
 
 export const main = css`
-  padding-right: 3.4rem;
 `

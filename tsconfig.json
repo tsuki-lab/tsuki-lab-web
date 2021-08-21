@@ -1,5 +1,5 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "src/gatsby-node"],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
