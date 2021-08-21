@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image";
 
 const Component: React.FC = (props) => (
   <div {...props}>
-    <StaticImage src="../../images/icon.png" alt="" placeholder="none" objectFit="contain" />
+    <StaticImage src="../../assets/images/icon.png" alt="" placeholder="none" objectFit="contain" />
   </div>
 )
 

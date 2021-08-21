@@ -1,4 +1,3 @@
-import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { useMemo } from 'react';
@@ -6,7 +5,6 @@ import simpleIcons from 'simple-icons';
 
 type Props = {
   slug: string;
-  css?: SerializedStyles;
   hex?: boolean|string;
 } & JSX.IntrinsicElements['svg']
 

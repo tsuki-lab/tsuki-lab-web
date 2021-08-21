@@ -1,8 +1,8 @@
 import React from 'react';
+import { PageProps } from "gatsby"
 import { Helmet } from 'react-helmet';
 
-const NotFoundPage = () => {
-
+const NotFoundPage: React.FC<PageProps> = () => {
   return (
     <main>
       <Helmet>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Inner, Wrapper } from '../atoms/Container';
-import { AuthorIcon } from '@/components/molecules/AuthorIcon';
+import { AuthorIcon } from '@/_old-components/AuthorIcon';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { Heading2, Heading3 } from '../atoms/Heading';

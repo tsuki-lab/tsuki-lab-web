@@ -15,11 +15,12 @@ module.exports = {
     },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-typegen`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images/`,
+        path: `${__dirname}/src/assets/images/`,
       },
     },
     `gatsby-plugin-image`,
@@ -29,7 +30,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
-        path: `${__dirname}/src/data/`,
+        path: `${__dirname}/src/assets/data/`,
       },
     },
     `gatsby-transformer-yaml`,
@@ -40,7 +41,7 @@ module.exports = {
         name: 'tsukiLab',
         short_name: 'tsukiLab',
         start_url: '/',
-        icon: 'src/images/icon.png'
+        icon: 'src/assets/images/icon.png'
       }
     },
     {

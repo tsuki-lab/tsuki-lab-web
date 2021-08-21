@@ -1,29 +1,19 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import * as styles from './Layout.styles';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { Footer } from './Footer';
-import { Header } from './Header';
-import { Sidebar } from './Sidebar';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
 
 type Element = JSX.IntrinsicElements['div'];
 type Layout = {};
 type Props = Element & Layout;
 
-type Query = {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-    };
-  };
-}
-
-const Component: React.FC<Props> = ({children, ...props}) => {
+export const Layout: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
-  const { site: { siteMetadata: { title, ...metaList } } } = useStaticQuery<Query>(graphql`
-    query {
+  const { site } = useStaticQuery<GatsbyTypes.SiteMetaQuery>(graphql`
+    query SiteMeta {
       site {
         siteMetadata {
           title
@@ -33,55 +23,29 @@ const Component: React.FC<Props> = ({children, ...props}) => {
     }
   `)
 
+  const metaList = [
+    {
+      name: 'description',
+      content: site?.siteMetadata?.description
+    }
+  ]
+
   return (
-    <div {...restReact}>
+    <div {...restReact} css={styles.layout}>
 
       <Helmet
-        title={title}
+        title={site?.siteMetadata?.title}
         htmlAttributes={{lang: 'ja'}}
-        meta={Object.entries(metaList).map(([key, value]) => ({
-          name: key,
-          content: value
-        }))}
+        meta={metaList}
       />
 
-      <Header />
+      <Header css={styles.header}/>
 
-      <Sidebar />
+      <main css={styles.main}>
+        {children}
+      </main>
 
-      <main>{children}</main>
-
-      <Footer />
+      <Footer css={styles.footer}/>
     </div>
   )
 }
-
-export const Layout = styled(Component)`
-  position: relative;
-  max-width: 1300px;
-  margin: auto;
-
-  ${Header} {
-    padding-right: 3rem;
-    padding-left: 3rem;
-    z-index: 100;
-    position: relative;
-  }
-
-  ${Sidebar} {
-    position: absolute;
-    right: 1.5rem;
-    top: 0;
-    bottom: 0;
-    padding-top: calc(5rem);
-  }
-
-  main {
-    padding-right: 3.4rem;
-  }
-
-  ${Footer} {
-    padding-top: 4rem;
-  }
-`
-

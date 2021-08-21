@@ -12,3 +12,9 @@ body {
 ul {
   list-style: none;
 }
+
+/* gatsby plugin imageの遅延表示を無効化する */
+.gatsby-image-wrapper [data-main-image] {
+  transition: none !important;
+  /* opacity: 1 !important; */
+}

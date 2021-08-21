@@ -2,12 +2,12 @@ import React from 'react';
 import { PageProps } from "gatsby"
 import { Layout } from '@/components/organisms/Layout';
 
-const IndexPage: React.FC<PageProps> = () => {
+const ActivityPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <h1>Index</h1>
+      <h1>Activity</h1>
     </Layout>
   );
 }
 
-export default IndexPage;
+export default ActivityPage;

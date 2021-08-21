@@ -2,8 +2,8 @@ import { STYLE_COLOR } from '@/styles/variables.style';
 import styled from '@emotion/styled';
 import React from 'react';
 import { Container, Inner, Wrapper } from '../atoms/Container';
-import { CoffeeSymbol } from '../molecules/CoffeeSymbol';
-import { HeroMessage } from '../molecules/HeroMessage';
+import { CoffeeSymbol } from './CoffeeSymbol';
+import { HeroMessage } from './HeroMessage';
 
 type Element = JSX.IntrinsicElements['div'];
 type HeroContainer = {};

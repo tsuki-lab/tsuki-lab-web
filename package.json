@@ -19,6 +19,7 @@
     "gatsby-plugin-material-ui": "^3.0.1",
     "gatsby-plugin-react-helmet": "^4.10.0",
     "gatsby-plugin-sharp": "^3.10.2",
+    "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-source-filesystem": "^3.10.0",
     "gatsby-source-rss-feed": "^1.2.2",
     "gatsby-transformer-sharp": "^3.10.0",
