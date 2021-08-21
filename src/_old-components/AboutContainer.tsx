@@ -14,7 +14,7 @@ type Props = Element & AboutContainer;
 const Component: React.FC<Props> = ({children, ...props}) => {
   const { ...restReact } = props;
 
-  const { dataYaml: { profile } }: DataType = useStaticQuery(query);
+  // const { dataYaml: { profile } }: DataType = useStaticQuery(query);
 
   return (
     <Wrapper {...restReact}>

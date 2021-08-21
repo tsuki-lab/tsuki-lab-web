@@ -47,6 +47,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
+    "clean": "gatsby clean",
     "build": "gatsby build",
     "typecheck": "tsc"
   }

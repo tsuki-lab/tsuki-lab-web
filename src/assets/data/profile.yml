@@ -1,15 +1,25 @@
 profile:
-  message: "1995年生まれ。東京都在住。\n2018年にweb業界へ転職し、現在はソリューション事業会社にwebエンジニアとして所属、副業やプライベートな開発しています。\nデザインとテクノロジーの調和と可能性を夢見るクリエイターです。"
+  author: hanetsuki
+  title: クリエイター
+  message: "1995年生まれ。東京都在住。\n2018年にweb業界へ転職し、現在はソリューション事業会社にwebエンジニアとして所属。副業や個人開発を空き時間にしています。\n見て、動かして感動を体験できる開発を目指します。"
+
+  sns:
+    - name: twitter
+      slug: twitter
+    - name: GitHub
+      slug: github
+    - name: Zenn
+      slug: zenn
 
   skills:
-    - slug: html5
-    - slug: css3
-    - slug: sass
-    - slug: javascript
-    - slug: typescript
-    - slug: vuedotjs
-    - slug: nuxtdotjs
-    - slug: react
-    - slug: nextdotjs
-    - slug: jquery
-    - slug: nodedotjs
+    - name: HTML
+    - name: CSS
+    - name: Sass
+    - name: JavaScript
+    - name: TypeScript
+    - name: Vue.js
+    - name: Nuxt.js
+    - name: React
+    - name: Next.js
+    - name: jQuery
+    - name: Node.js

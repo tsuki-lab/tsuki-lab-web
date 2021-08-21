@@ -1,16 +1,17 @@
 import React from 'react';
 import * as styles from './Layout.styles';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, PageProps } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import { Footer } from '../Footer';
 import { Header } from '../Header';
 
-type Element = JSX.IntrinsicElements['div'];
-type Layout = {};
-type Props = Element & Layout;
+type Props = PageProps;
 
 export const Layout: React.FC<Props> = ({children, ...props}) => {
-  const { ...restReact } = props;
+  const {
+    path
+   } = props;
+
+  const isRoot = path === '/';
 
   const { site } = useStaticQuery<GatsbyTypes.SiteMetaQuery>(graphql`
     query SiteMeta {
@@ -31,7 +32,7 @@ export const Layout: React.FC<Props> = ({children, ...props}) => {
   ]
 
   return (
-    <div {...restReact} css={styles.layout}>
+    <div css={styles.layout}>
 
       <Helmet
         title={site?.siteMetadata?.title}
@@ -39,13 +40,14 @@ export const Layout: React.FC<Props> = ({children, ...props}) => {
         meta={metaList}
       />
 
-      <Header css={styles.header}/>
+      <Header
+        root={isRoot}
+        css={styles.header}
+      />
 
       <main css={styles.main}>
         {children}
       </main>
-
-      <Footer css={styles.footer}/>
     </div>
   )
 }

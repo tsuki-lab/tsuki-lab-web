@@ -785,12 +785,20 @@ type DataYaml = Node & {
 };
 
 type DataYamlProfile = {
+  readonly author: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
   readonly message: Maybe<Scalars['String']>;
+  readonly sns: Maybe<ReadonlyArray<Maybe<DataYamlProfileSns>>>;
   readonly skills: Maybe<ReadonlyArray<Maybe<DataYamlProfileSkills>>>;
 };
 
-type DataYamlProfileSkills = {
+type DataYamlProfileSns = {
+  readonly name: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
+};
+
+type DataYamlProfileSkills = {
+  readonly name: Maybe<Scalars['String']>;
 };
 
 type Query = {
@@ -1328,8 +1336,20 @@ type DataYamlFilterInput = {
 };
 
 type DataYamlProfileFilterInput = {
+  readonly author: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
   readonly message: Maybe<StringQueryOperatorInput>;
+  readonly sns: Maybe<DataYamlProfileSnsFilterListInput>;
   readonly skills: Maybe<DataYamlProfileSkillsFilterListInput>;
+};
+
+type DataYamlProfileSnsFilterListInput = {
+  readonly elemMatch: Maybe<DataYamlProfileSnsFilterInput>;
+};
+
+type DataYamlProfileSnsFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
 };
 
 type DataYamlProfileSkillsFilterListInput = {
@@ -1337,7 +1357,7 @@ type DataYamlProfileSkillsFilterListInput = {
 };
 
 type DataYamlProfileSkillsFilterInput = {
-  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
 };
 
 type FileConnection = {
@@ -1614,9 +1634,14 @@ type FileFieldsEnum =
   | 'childrenDataYaml.internal.mediaType'
   | 'childrenDataYaml.internal.owner'
   | 'childrenDataYaml.internal.type'
+  | 'childrenDataYaml.profile.author'
+  | 'childrenDataYaml.profile.title'
   | 'childrenDataYaml.profile.message'
+  | 'childrenDataYaml.profile.sns'
+  | 'childrenDataYaml.profile.sns.name'
+  | 'childrenDataYaml.profile.sns.slug'
   | 'childrenDataYaml.profile.skills'
-  | 'childrenDataYaml.profile.skills.slug'
+  | 'childrenDataYaml.profile.skills.name'
   | 'childDataYaml.id'
   | 'childDataYaml.parent.id'
   | 'childDataYaml.parent.parent.id'
@@ -1655,9 +1680,14 @@ type FileFieldsEnum =
   | 'childDataYaml.internal.mediaType'
   | 'childDataYaml.internal.owner'
   | 'childDataYaml.internal.type'
+  | 'childDataYaml.profile.author'
+  | 'childDataYaml.profile.title'
   | 'childDataYaml.profile.message'
+  | 'childDataYaml.profile.sns'
+  | 'childDataYaml.profile.sns.name'
+  | 'childDataYaml.profile.sns.slug'
   | 'childDataYaml.profile.skills'
-  | 'childDataYaml.profile.skills.slug'
+  | 'childDataYaml.profile.skills.name'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -4068,9 +4098,14 @@ type DataYamlFieldsEnum =
   | 'internal.mediaType'
   | 'internal.owner'
   | 'internal.type'
+  | 'profile.author'
+  | 'profile.title'
   | 'profile.message'
+  | 'profile.sns'
+  | 'profile.sns.name'
+  | 'profile.sns.slug'
   | 'profile.skills'
-  | 'profile.skills.slug';
+  | 'profile.skills.name';
 
 type DataYamlGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -4086,10 +4121,23 @@ type DataYamlSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type usersplktachizakireposateliertsukiLabWebsrccomponentsorganismsActivityContainerTsx1387470887QueryVariables = Exact<{ [key: string]: never; }>;
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type usersplktachizakireposateliertsukiLabWebsrccomponentsorganismsActivityContainerTsx1387470887Query = { readonly allFeedZennPost: { readonly nodes: ReadonlyArray<(
+type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly dataYaml: Maybe<{ readonly profile: Maybe<(
+      Pick<DataYamlProfile, 'author' | 'title' | 'message'>
+      & { readonly sns: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSns, 'name'>>>>, readonly skills: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSkills, 'name'>>>> }
+    )> }> };
+
+type usersplktachizakireposateliertsukiLabWebsrcOldComponentsActivityContainerTsx1387470887QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersplktachizakireposateliertsukiLabWebsrcOldComponentsActivityContainerTsx1387470887Query = { readonly allFeedZennPost: { readonly nodes: ReadonlyArray<(
       Pick<FeedZennPost, 'id' | 'link' | 'title' | 'isoDate'>
       & { readonly internal: Pick<Internal, 'type'> }
     )> }, readonly allFeedQiitaPost: { readonly nodes: ReadonlyArray<(
@@ -4100,48 +4148,9 @@ type usersplktachizakireposateliertsukiLabWebsrccomponentsorganismsActivityConta
       & { readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>>, readonly fields: Maybe<Pick<FileFields, 'feedId'>> }
     )> } };
 
-type usersplktachizakireposateliertsukiLabWebsrccomponentsorganismsAboutContainerTsx1671520016QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersplktachizakireposateliertsukiLabWebsrccomponentsorganismsAboutContainerTsx1671520016Query = { readonly dataYaml: Maybe<{ readonly profile: Maybe<(
-      Pick<DataYamlProfile, 'message'>
-      & { readonly skills: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSkills, 'slug'>>>> }
-    )> }> };
-
 type SiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }
