@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './Header.styles'
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 type Element = JSX.IntrinsicElements['header'];
 type Header = {
@@ -21,9 +22,21 @@ export const Header: React.FC<Props> = ({children, ...props}) => {
 
       <nav css={styles.navigation}>
         <ul>
-          <li><a href="#about">about</a></li>
-          <li><a href="#activity">activity</a></li>
-          <li><a href="#contact">contact</a></li>
+          <li>
+            <AnchorLink to="/#about">
+              about
+            </AnchorLink>
+          </li>
+          <li>
+            <AnchorLink to="/activity/">
+              activity
+            </AnchorLink>
+          </li>
+          <li>
+            <AnchorLink to="/#contact">
+              contact
+            </AnchorLink>
+          </li>
         </ul>
       </nav>
     </header>
