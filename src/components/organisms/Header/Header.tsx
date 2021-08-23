@@ -18,7 +18,11 @@ export const Header: React.FC<Props> = ({children, ...props}) => {
 
   return (
     <header {...restProps} css={styles.header}>
-      <Symbol css={styles.symbol}>tsuki lab</Symbol>
+      <Symbol>
+        <AnchorLink to="/" css={styles.symbol}>
+          tsuki lab
+        </AnchorLink>
+      </Symbol>
 
       <nav css={styles.navigation}>
         <ul>

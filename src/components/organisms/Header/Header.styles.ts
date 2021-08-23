@@ -24,6 +24,7 @@ export const symbol = css`
   text-decoration-thickness: 2px;
   text-underline-offset: .3em;
   line-height: 0.9;
+  display: inline-block;
 `
 
 export const navigation = css`

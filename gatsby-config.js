@@ -13,7 +13,6 @@ module.exports = {
         '@': path.join(__dirname, 'src')
       }
     },
-    `gatsby-plugin-material-ui`, // TODO: あとで消す
     `gatsby-plugin-anchor-links`,
     `gatsby-plugin-emotion`,
     `gatsby-plugin-typegen`,

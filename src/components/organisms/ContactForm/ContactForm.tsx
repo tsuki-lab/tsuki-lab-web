@@ -1,7 +1,6 @@
 import React from 'react';
 import * as styles from './ContactForm.styles'
 import { useForm } from '@formspree/react';
-import { Button, TextField } from '@material-ui/core';
 
 type Element = JSX.IntrinsicElements['div'];
 type ContactForm = {};
@@ -21,7 +20,13 @@ export const ContactForm: React.FC<Props> = ({children, ...props}) => {
           <p>Thank you very much for contacting me.</p>
         ) : (
           <form onSubmit={handleSubmit} autoComplete="on">
-            <TextField
+            <div>
+              <label htmlFor=""></label>
+              <div>
+                <input type="text" />
+              </div>
+            </div>
+            {/* <TextField
               size="small"
               variant="outlined"
               fullWidth
@@ -77,7 +82,7 @@ export const ContactForm: React.FC<Props> = ({children, ...props}) => {
               disabled={state.submitting}
             >
               送信
-            </Button>
+            </Button> */}
           </form>
         )
       }
