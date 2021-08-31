@@ -4121,33 +4121,6 @@ type DataYamlSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type ActivityPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ActivityPageQuery = { readonly allFeedZennPost: { readonly nodes: ReadonlyArray<(
-      Pick<FeedZennPost, 'id' | 'link' | 'title' | 'isoDate'>
-      & { readonly internal: Pick<Internal, 'type'> }
-    )> }, readonly allFeedQiitaPost: { readonly nodes: ReadonlyArray<(
-      Pick<FeedQiitaPost, 'id' | 'link' | 'title' | 'isoDate'>
-      & { readonly internal: Pick<Internal, 'type'> }
-    )> }, readonly allFile: { readonly nodes: ReadonlyArray<(
-      Pick<File, 'name'>
-      & { readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>>, readonly fields: Maybe<Pick<FileFields, 'feedId'>> }
-    )> } };
-
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly dataYaml: Maybe<{ readonly profile: Maybe<(
-      Pick<DataYamlProfile, 'author' | 'title' | 'message'>
-      & { readonly sns: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSns, 'name'>>>>, readonly skills: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSkills, 'name'>>>> }
-    )> }> };
-
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4161,11 +4134,6 @@ type Unnamed_1_Query = { readonly allFeedZennPost: { readonly nodes: ReadonlyArr
       Pick<File, 'name'>
       & { readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>>, readonly fields: Maybe<Pick<FileFields, 'feedId'>> }
     )> } };
-
-type SiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -4192,5 +4160,37 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type SiteMetaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteMetaQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type ActivityPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ActivityPageQuery = { readonly allFeedZennPost: { readonly nodes: ReadonlyArray<(
+      Pick<FeedZennPost, 'id' | 'link' | 'title' | 'isoDate'>
+      & { readonly internal: Pick<Internal, 'type'> }
+    )> }, readonly allFeedQiitaPost: { readonly nodes: ReadonlyArray<(
+      Pick<FeedQiitaPost, 'id' | 'link' | 'title' | 'isoDate'>
+      & { readonly internal: Pick<Internal, 'type'> }
+    )> }, readonly allFile: { readonly nodes: ReadonlyArray<(
+      Pick<File, 'name'>
+      & { readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>>, readonly fields: Maybe<Pick<FileFields, 'feedId'>> }
+    )> } };
+
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly dataYaml: Maybe<{ readonly profile: Maybe<(
+      Pick<DataYamlProfile, 'author' | 'title' | 'message'>
+      & { readonly sns: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSns, 'name'>>>>, readonly skills: Maybe<ReadonlyArray<Maybe<Pick<DataYamlProfileSkills, 'name'>>>> }
+    )> }> };
 
 }

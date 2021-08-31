@@ -1,14 +1,15 @@
 import { css } from '@emotion/react';
+import { container } from '@/styles/common/container.style';
 
 export const layout = css`
   position: relative;
-  max-width: 1300px;
   margin: auto;
 `
 
 export const header = css`
   z-index: 100;
   position: relative;
+  ${container}
 `
 
 export const main = css`

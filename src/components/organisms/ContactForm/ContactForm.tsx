@@ -19,11 +19,40 @@ export const ContactForm: React.FC<Props> = ({children, ...props}) => {
         state.succeeded ? (
           <p>Thank you very much for contacting me.</p>
         ) : (
-          <form onSubmit={handleSubmit} autoComplete="on">
-            <div>
-              <label htmlFor=""></label>
-              <div>
-                <input type="text" />
+          <form onSubmit={handleSubmit} autoComplete="on" css={styles.contactForm}>
+            <div className="row">
+              <label htmlFor="email">メールアドレス</label>
+              <div className="field-column">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="例：info@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div className="row">
+              <label htmlFor="subject">件名</label>
+              <div className="field-column">
+                <input
+                  type="email"
+                  id="subject"
+                  name="subject"
+                  placeholder="例：見積もり依頼"
+                  required
+                />
+              </div>
+            </div>
+            <div className="row">
+              <label htmlFor="message">内容</label>
+              <div className="field-column">
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="例：お問い合わせ内容"
+                  required
+                ></textarea>
               </div>
             </div>
             {/* <TextField
