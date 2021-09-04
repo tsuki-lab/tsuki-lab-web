@@ -32,7 +32,7 @@ export const Layout: React.FC<Props> = ({children, ...props}) => {
   ]
 
   return (
-    <div css={styles.layout}>
+    <div className={styles.layout}>
 
       <Helmet
         title={site?.siteMetadata?.title}
@@ -42,10 +42,10 @@ export const Layout: React.FC<Props> = ({children, ...props}) => {
 
       <Header
         root={isRoot}
-        css={styles.header}
+        className={styles.header}
       />
 
-      <main css={styles.main}>
+      <main className={styles.main}>
         {children}
       </main>
     </div>
