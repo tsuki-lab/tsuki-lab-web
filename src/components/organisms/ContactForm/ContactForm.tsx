@@ -19,7 +19,7 @@ export const ContactForm: React.FC<Props> = ({children, ...props}) => {
         state.succeeded ? (
           <p>Thank you very much for contacting me.</p>
         ) : (
-          <form onSubmit={handleSubmit} autoComplete="on" css={styles.contactForm}>
+          <form onSubmit={handleSubmit} autoComplete="on" className={styles.contactForm}>
             <div className="row">
               <label htmlFor="email">メールアドレス</label>
               <div className="field-column">
