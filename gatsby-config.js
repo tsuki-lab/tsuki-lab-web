@@ -57,6 +57,8 @@ module.exports = {
         url: `https://qiita.com/tsuki-lab/feed`,
         name: `QiitaPost`
       }
-    }
+    },
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-linaria`
   ]
 };
