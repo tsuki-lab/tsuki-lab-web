@@ -17,14 +17,14 @@ export const Header: React.FC<Props> = ({children, ...props}) => {
   const Symbol = root ? 'h1' : 'div'
 
   return (
-    <header {...restProps} css={styles.header}>
+    <header {...restProps} className={styles.header}>
       <Symbol>
-        <AnchorLink to="/" css={styles.symbol}>
+        <AnchorLink to="/" className={styles.symbol}>
           tsuki lab
         </AnchorLink>
       </Symbol>
 
-      <nav css={styles.navigation}>
+      <nav className={styles.navigation}>
         <ul>
           <li>
             <AnchorLink to="/#about">

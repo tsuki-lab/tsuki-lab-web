@@ -1,5 +1,5 @@
-import { COLOR } from "@/constants/styles";
-import { css } from "@emotion/react";
+import { COLOR } from "@/styles/variables/color";
+import { css } from "linaria";
 
 export const header = css`
   display: flex;
