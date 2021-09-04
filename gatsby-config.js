@@ -14,7 +14,6 @@ module.exports = {
       }
     },
     `gatsby-plugin-anchor-links`,
-    `gatsby-plugin-emotion`,
     `gatsby-plugin-typegen`,
     {
       resolve: `gatsby-source-filesystem`,
