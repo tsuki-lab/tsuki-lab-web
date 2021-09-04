@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from '../styles/pages/index.style'
+import * as styles from '../styles/pages/index.styles'
 import { graphql, PageProps } from "gatsby"
 import {ContactForm} from '../components/organisms/ContactForm'
 import { StaticImage } from 'gatsby-plugin-image'
@@ -9,7 +9,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data }) =>
 
   return (
     <>
-      <div css={styles.heroContainerWrap}>
+      <div className={styles.heroContainerWrap}>
         <StaticImage
           className="bg-image"
           src="../assets/images/hero-bg.jpg"
@@ -17,7 +17,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data }) =>
           objectFit="cover"
           objectPosition="center"
         />
-      <div css={styles.heroContainer}>
+      <div className={styles.heroContainer}>
         <div className="inner">
           <div className="message-container">
             <p className="title">
@@ -33,7 +33,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data }) =>
       </div>
       </div>
 
-      <section css={styles.aboutContainer}>
+      <section className={styles.aboutContainer}>
         <div className="inner">
           <h2 className="container-title">about me</h2>
 
@@ -73,7 +73,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data }) =>
         </div>
       </section>
 
-      <section css={styles.contactContainer}>
+      <section className={styles.contactContainer}>
         <div className="inner">
           <h2 className="container-title">contact</h2>
           <ContactForm />

@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, cx } from "linaria";
 import { container } from "../common/container.style";
 
 export const heroContainerWrap = css`
@@ -12,39 +12,37 @@ export const heroContainerWrap = css`
   }
 `
 
-export const heroContainer = css`
-  ${container}
-  position: relative;
-  height: 600px;
-  margin-top: 20px;
+export const heroContainer = cx(css`
+position: relative;
+height: 600px;
+margin-top: 20px;
 
-  .inner {
-    display: flex;
-    align-items: center;
-    height: 100%;
+.inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.message-container {
+  filter: drop-shadow(0 0 .2em #000);
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+
+  .title {
+    font-size: 5rem;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
-  .message-container {
-    filter: drop-shadow(0 0 .2em #000);
-    color: white;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-
-    .title {
-      font-size: 5rem;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .body {
-      font-size: 1.8rem;
-      margin-top: 12px;
-    }
+  .body {
+    font-size: 1.8rem;
+    margin-top: 12px;
   }
-`
+}
+`, container)
 
-export const aboutContainer = css`
-  ${container}
+export const aboutContainer = cx(css`
   margin-top: 130px;
 
   .author-container {
@@ -109,8 +107,8 @@ export const aboutContainer = css`
       }
     }
   }
-`
+`, container)
 
-export const contactContainer = css`
-  ${container}
-`
+export const contactContainer = cx(css`
+
+`, container)
