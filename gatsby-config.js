@@ -14,6 +14,12 @@ module.exports = {
         start_url: '/',
         icon: 'src/images/icon.png'
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: process.env.GTM_TRACKING_ID,
+      }
     }
   ]
 };
