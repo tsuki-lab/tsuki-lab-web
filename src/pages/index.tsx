@@ -28,7 +28,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <p>1995年生まれ、東京都在住。高校卒業後、4年間はフリーターと同人活動で生計を立てていました。その後、新卒と同じ年代でweb業界へ転職。現在はフロントエンドエンジニアとして、ソリューション事業会社に所属しながら副業やプライベートな開発しています。</p>
+        <p>1995年生まれ、東京都在住。フロントエンド領域を最も得意とするエンジニアです。開発業務を通して感じた課題や経験を生かした環境構築や環境改善・設計を考えるのが好きです。本業・副業ともにwebアプリケーションとwebサイトの作成業務に携わっております。</p>
 
         <section>
           <h3>skill</h3>
@@ -78,35 +78,35 @@ const IndexPage = () => {
             <li>
               <dl>
                 <dt>ECサイト開発業務</dt>
-                <dd>チーム開発/ フロントエンドPG</dd>
+                <dd>チーム開発/ 2人/ フロントエンドPG</dd>
                 <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>メディアサイト開発業務</dt>
-                <dd>チーム開発/ フロントエンドPG</dd>
+                <dd>チーム開発/ 2人/ フロントエンドPG</dd>
                 <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>ソーシャルゲーム開発業務</dt>
-                <dd>チーム開発/ アウトゲームPG</dd>
+                <dd>チーム開発/ 8人/ アウトゲームPG</dd>
                 <dd>Vue.js, NodeJs, Jenkins, Redis, MongoDB</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>フリーランス人材メディアサービス開発業務</dt>
-                <dd>チーム開発/ フロントエンド開発リーダー</dd>
+                <dd>チーム開発/ 4人/ フロントエンド開発リーダー</dd>
                 <dd>Laravel, Vue.js, MySQL</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>大手電子機器メーカーのマニュアル管理システム開発業務</dt>
-                <dd>チーム開発/ PM補佐・フロントエンド開発リーダー</dd>
+                <dd>チーム開発/ 7人/ PM補佐・フロントエンド開発リーダー</dd>
                 <dd>AWS, Docker, Rails, TypeScript, Vue.js, MySQL</dd>
               </dl>
             </li>
@@ -134,8 +134,29 @@ const IndexPage = () => {
             <li>
               <dl>
                 <dt>Webアプリケーション開発</dt>
-                <dd>チーム開発/ フロントエンド開発リーダー</dd>
+                <dd>チーム開発/ 5人/ フロントエンド開発リーダー</dd>
                 <dd>Docker, Next.js, Rails, redis, MySQL, AWS, Sprite, Swagger</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>オウンドメディア開発</dt>
+                <dd>チーム開発/ 2人/ フロントエンド</dd>
+                <dd>Next.js, Vercel, microCMS</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>コーポレートサイト作成基盤/構築</dt>
+                <dd>チーム開発/ 2人/ フロントエンド</dd>
+                <dd>Gatsby.js, Netlify, microCMS</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>コーポレートサイト作成基盤/構築</dt>
+                <dd>チーム開発/ 2人/ フロントエンド</dd>
+                <dd>Gatsby.js, Netlify, microCMS</dd>
               </dl>
             </li>
           </ul>
