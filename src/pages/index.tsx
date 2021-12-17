@@ -15,7 +15,7 @@ const IndexPage = () => {
 
       <h1>tsuki lab</h1>
 
-      <p>イラストレーター兼、webエンジニアのウサギのまとめサイト（制作途中...）</p>
+      <p>Jamstackが好きなフロントエンドエンジニアのサイト</p>
 
       <section>
         <h2>about me</h2>
@@ -195,10 +195,10 @@ const IndexPage = () => {
 
         <ul>
           <li>
-            <a href="mailto:info@tsuki-lab.net">info@tsuki-lab.net</a>
+            <a href="mailto:me@tsuki-lab.net">me@tsuki-lab.net</a>
           </li>
           <li>
-            <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter DM</a>
+            <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter</a>
           </li>
         </ul>
 
