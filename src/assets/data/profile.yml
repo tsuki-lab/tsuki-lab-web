@@ -1,0 +1,29 @@
+profile:
+  author: hanetsuki
+  title: クリエイター
+  message: "1995年生まれ・東京都在住。2018年にエンジニアとして働き始め、現在はwebアプリケーションやwebサイト制作などに身を投じています。フロントエンド領域を最も主戦場としており、サービス立ち上げからリリースまでの工程を得意としています。"
+
+  links:
+    - name: twitter
+      href: https://twitter.com/hanetsuki_dev
+    - name: GitHub
+      href: https://github.com/tsuki-lab
+    - name: Zenn
+      href: https://zenn.dev/rabbit
+    - name: Illust
+      href: https://art.tsuki-lab.net/
+
+  skill:
+    - name: HTML
+    - name: CSS
+    - name: Sass
+    - name: Tailwind
+    - name: Emotion
+    - name: JavaScript
+    - name: TypeScript
+    - name: Vue.js/Nuxt.js
+    - name: React/Next.js
+    - name: Gatsby.js
+    - name: jQuery
+    - name: Bootstrap4
+    - name: Node.js
