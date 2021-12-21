@@ -42,7 +42,7 @@ const IndexPage = () => {
             <li>Nuxt.js</li>
             <li>React</li>
             <li>Next.js</li>
-            <li>Gatsby</li>
+            <li>Gatsby.js</li>
             <li>jQuery</li>
             <li>Node.js</li>
           </ul>
