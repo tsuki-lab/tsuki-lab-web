@@ -3,8 +3,6 @@ module.exports = {
     title: 'Gatsby + Node.js (TypeScript) API'
   },
   plugins: [
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -14,11 +12,25 @@ module.exports = {
         icon: 'src/images/icon.png'
       }
     },
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/assets/data/`,
+        ignore: [`**/\.*`],
+      },
+    },
     {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
         id: process.env.GTM_TRACKING_ID,
       }
-    }
+    },
   ]
 };

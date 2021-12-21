@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet';
 import '../styles/index.scss';
 import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
+import { graphql } from 'gatsby';
 
-const IndexPage = () => {
+const IndexPage: React.FC<any> = ({data: { dataYaml: profile, allContactsYaml: { node: contacts }, allHistoryOfDevelopmentYaml: { node: historyOfDevelopment} }}) => {
   const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
-
   return (
     <main>
       <Helmet>
@@ -21,14 +21,14 @@ const IndexPage = () => {
         <h2>about me</h2>
 
         <div className="author">
-          <img className="author-icon" src={authorIcon} alt="" />
+          <img className="author-icon" src={authorIcon} alt=""  width="75" height="75" />
           <div>
-            <p className="author-name">hanetsuki</p>
-            <p className="author-title">クリエイター</p>
+            <p className="author-name">{profile.author}</p>
+            <p className="author-title">{profile.title}</p>
           </div>
         </div>
 
-        <p>1995年生まれ、東京都在住。フロントエンド領域を最も得意とするエンジニアです。開発業務を通して感じた課題や経験を生かした環境構築や環境改善・設計を考えるのが好きです。本業・副業ともにwebアプリケーションとwebサイトの作成業務に携わっております。</p>
+        <p>{profile.message}</p>
 
         <section>
           <h3>skill</h3>
@@ -208,5 +208,40 @@ const IndexPage = () => {
     </main>
   );
 }
+
+export const query = graphql`
+  query IndexData {
+    dataYaml {
+      author
+      title
+      message
+      skill {
+        name
+      }
+      links {
+        name
+        href
+      }
+    }
+    allHistoryOfDevelopmentYaml {
+      nodes {
+        year
+        name
+        type
+        role
+        member
+        skill {
+          name
+        }
+      }
+    }
+    allContactsYaml {
+      nodes {
+        name
+        href
+      }
+    }
+  }
+`
 
 export default IndexPage;
