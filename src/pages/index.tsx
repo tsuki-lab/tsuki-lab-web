@@ -3,19 +3,41 @@ import { Helmet } from 'react-helmet';
 import '../styles/index.scss';
 import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 
-const IndexPage: React.FC<any> = ({data: { dataYaml: profile, allContactsYaml: { node: contacts }, allHistoryOfDevelopmentYaml: { node: historyOfDevelopment} }}) => {
-  const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string);
+type HistoryOfDevelopmentFormat = Record<Year, HistoryOfDevelopment[]>
+
+const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
+  data: {
+    site: siteData,
+    dataYaml: profile,
+    allHistoryOfDevelopmentYaml: {
+      nodes: historyOfDevelopment
+    },
+    allContactsYaml: {
+      nodes: contacts
+    }
+  }
+}) => {
+  const site = siteData?.siteMetadata
+  const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string)
+  const formattedHistoryOfDev = historyOfDevelopment.reduce<HistoryOfDevelopmentFormat>((acc, crr) => {
+    if (acc[crr.year] === undefined) {
+      acc[crr.year] = [crr]
+    } else {
+      acc[crr.year].push(crr)
+    }
+    return acc
+  }, {} as HistoryOfDevelopmentFormat)
   return (
     <main>
       <Helmet>
-        <title>tsuki lab</title>
+        <title>{ site?.title }</title>
       </Helmet>
 
-      <h1>tsuki lab</h1>
+      <h1>{ site?.title }</h1>
 
-      <p>Jamstackが好きなフロントエンドエンジニアのサイト</p>
+      <p>{ site?.description }</p>
 
       <section>
         <h2>about me</h2>
@@ -23,57 +45,58 @@ const IndexPage: React.FC<any> = ({data: { dataYaml: profile, allContactsYaml: {
         <div className="author">
           <img className="author-icon" src={authorIcon} alt=""  width="75" height="75" />
           <div>
-            <p className="author-name">{profile.author}</p>
-            <p className="author-title">{profile.title}</p>
+            <p className="author-name">{ profile?.author }</p>
+            <p className="author-title">{ profile?.title }</p>
           </div>
         </div>
 
-        <p>{profile.message}</p>
+        <p>{ profile?.message }</p>
 
         <section>
           <h3>skill</h3>
           <ul className="skill-list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Sass</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>Vue.js</li>
-            <li>Nuxt.js</li>
-            <li>React</li>
-            <li>Next.js</li>
-            <li>Gatsby.js</li>
-            <li>jQuery</li>
-            <li>Node.js</li>
+            { profile?.skill?.map((skill, i) => (
+              <li key={i}>
+                { skill?.name }
+              </li>
+            )) }
           </ul>
         </section>
 
         <section>
           <h3>links</h3>
           <ul className="sns-list">
-            <li>
-              <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter</a>
-            </li>
-            <li>
-              <a href="https://github.com/tsuki-lab" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://www.resume.id/tsuki_lab" target="_blank">resume</a>
-            </li>
-            <li>
-              <a href="https://zenn.dev/rabbit" target="_blank">zenn</a>
-            </li>
-            <li>
-              <a href="https://qiita.com/tsuki-lab" target="_blank">Qiita</a>
-            </li>
-            <li>
-              <a href="https://hanetuki.com" target="_blank">ウサギ王国</a>
-            </li>
+            { profile?.links?.map((link, i) => (
+              <li key={i}>
+                <a href={link?.href} target="_blank">
+                  { link?.name }
+                </a>
+              </li>
+            )) }
           </ul>
         </section>
 
         <section>
           <h3>job history</h3>
+          {/* {Object.entries(formattedHistoryOfDev).map(([key, items]) => (
+            <>
+              <h4 key={`${key}_h4`}>{ key }</h4>
+              <ul key={`${key}_ul`}>
+                {items.map((item, i) => (
+                  <li key={i}>
+                    <dl>
+                      <dt>{item.name}</dt>
+                      <dd>
+                        {item.type}
+                        {item.type === '業務' && `/ ${item.member}`}
+                      </dd>
+                      <dd>{ item.skill.map(v => v?.name).join(', ') }</dd>
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ))} */}
           <ul>
             <li>
               <dl>
@@ -211,6 +234,12 @@ const IndexPage: React.FC<any> = ({data: { dataYaml: profile, allContactsYaml: {
 
 export const query = graphql`
   query IndexData {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
     dataYaml {
       author
       title

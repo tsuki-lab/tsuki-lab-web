@@ -1,13 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Node.js (TypeScript) API'
+    title: 'tsuki lab',
+    description: 'Jamstackが好きなフロントエンドエンジニアのサイト'
   },
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Gatsby + Node.js (TypeScript) API',
-        short_name: 'Gatsby + Node.js (TypeScript)',
+        name: 'tsuki lab',
+        short_name: 'tsuki lab',
         start_url: '/',
         icon: 'src/images/icon.png'
       }

@@ -77,6 +77,7 @@
     - name: Node.js
 - name: 某保育オウンドメディアサイト制作業務
   type: 業務
+  member: 個人
   year: 2021
   skill:
     - name: WordPress
@@ -86,6 +87,7 @@
     - name: Docker
 - name: 某PR支援会社コーポレートサイト改修業務
   type: 業務
+  member: 個人
   year: 2021
   skill:
     - name: " microCMS"
@@ -94,6 +96,7 @@
     - name: GitHub Actions
 - name: 某PR支援会社コーポレートサイト制作業務
   type: 業務
+  member: 個人
   year: 2020
   skill:
     - name: HTML
