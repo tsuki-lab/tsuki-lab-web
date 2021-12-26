@@ -5,30 +5,70 @@ import authorIcon from '../images/icon.png';
 import { useForm, ValidationError } from '@formspree/react';
 import { graphql, PageProps } from 'gatsby';
 
-type HistoryOfDevelopmentFormat = Record<Year, HistoryOfDevelopment[]>
+const NOTION_DATABASE = {
+  SKILL: process.env.GATSBY_NOTION_DATABASE_SKILL,
+  JOB_HISTORY: process.env.GATSBY_NOTION_DATABASE_JOB_HISTORY
+}
 
 const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
   data: {
     site: siteData,
-    dataYaml: profile,
-    allHistoryOfDevelopmentYaml: {
-      nodes: historyOfDevelopment
-    },
-    allContactsYaml: {
-      nodes: contacts
+    allNotion: {
+      nodes: notion
     }
   }
 }) => {
   const site = siteData?.siteMetadata
+
   const [state, handleSubmit] = useForm(process.env.GATSBY_FORMSPREE_KEY as string)
-  const formattedHistoryOfDev = historyOfDevelopment.reduce<HistoryOfDevelopmentFormat>((acc, crr) => {
-    if (acc[crr.year] === undefined) {
-      acc[crr.year] = [crr]
-    } else {
-      acc[crr.year].push(crr)
+
+  const [ skill, jobHistories ] = notion.reduce((acc, crr) => {
+    const databaseId = crr.raw.parent.database_id.replace(/-/g, '')
+    if (databaseId === NOTION_DATABASE.SKILL) {
+      acc[0].push(crr)
+    }
+
+    if (databaseId === NOTION_DATABASE.JOB_HISTORY) {
+      acc[1].push(crr)
     }
     return acc
-  }, {} as HistoryOfDevelopmentFormat)
+  }, [[], []] as [NotionNode[], NotionNode[]])
+
+  jobHistories.sort((a, b) => {
+    if (!a.properties.year_label) return 0
+    if (!b.properties.year_label) return 0
+    return a.properties.year_label.value < b.properties.year_label.value ? 1 : -1
+  })
+
+  const jobHistory = jobHistories.reduce((acc, crr) => {
+    if (!crr.properties.year_label) return acc
+    if (acc[crr.properties.year_label.value.name]) {
+      acc[crr.properties.year_label.value.name].push(crr)
+    } else {
+      acc[crr.properties.year_label.value.name] = [crr]
+    }
+    return acc
+  }, {} as Record<string, NotionNode[]>)
+
+  const years = Object.keys(jobHistory).sort((a, b) => a > b ? 1 : -1)
+
+  const parseJobHistory = (notion: NotionNode) => {
+    let str = ''
+    if (notion.properties.job_type) {
+      str += notion.properties.job_type.value.name
+    }
+
+    if (notion.properties.member_count) {
+      str += ` / ${notion.properties.member_count.value}人`
+    }
+
+    if (notion.properties.development_role) {
+      str += ` / ${notion.properties.development_role.value.name}`
+    }
+
+    return str
+  }
+
   return (
     <main>
       <Helmet>
@@ -45,19 +85,19 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
         <div className="author">
           <img className="author-icon" src={authorIcon} alt=""  width="75" height="75" />
           <div>
-            <p className="author-name">{ profile?.author }</p>
-            <p className="author-title">{ profile?.title }</p>
+            <p className="author-name">{ site.author.name  }</p>
+            <p className="author-title">{ site.author.title }</p>
           </div>
         </div>
 
-        <p>{ profile?.message }</p>
+        <p>{ site.author.message }</p>
 
         <section>
           <h3>skill</h3>
           <ul className="skill-list">
-            { profile?.skill?.map((skill, i) => (
-              <li key={i}>
-                { skill?.name }
+            { skill.map(skill => (
+              <li key={skill.id}>
+                { skill.title }
               </li>
             )) }
           </ul>
@@ -66,7 +106,7 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
         <section>
           <h3>links</h3>
           <ul className="sns-list">
-            { profile?.links?.map((link, i) => (
+            { site.links.map((link, i) => (
               <li key={i}>
                 <a href={link?.href} target="_blank">
                   { link?.name }
@@ -78,111 +118,22 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
 
         <section>
           <h3>job history</h3>
-          {/* {Object.entries(formattedHistoryOfDev).map(([key, items]) => (
+          { years.map(year => (
             <>
-              <h4 key={`${key}_h4`}>{ key }</h4>
-              <ul key={`${key}_ul`}>
-                {items.map((item, i) => (
-                  <li key={i}>
+              <h4>{ year }</h4>
+              <ul>
+                { jobHistory[year].map(value => (
+                  <li key={value.id}>
                     <dl>
-                      <dt>{item.name}</dt>
-                      <dd>
-                        {item.type}
-                        {item.type === '業務' && `/ ${item.member}`}
-                      </dd>
-                      <dd>{ item.skill.map(v => v?.name).join(', ') }</dd>
+                      <dt>{ value.title }</dt>
+                      <dd>{ parseJobHistory(value) }</dd>
+                      <dd>{ value.properties.environments?.value.map(v => v.name).join(', ') }</dd>
                     </dl>
                   </li>
-                ))}
+                )) }
               </ul>
             </>
-          ))} */}
-          <ul>
-            <li>
-              <dl>
-                <dt>ECサイト開発業務</dt>
-                <dd>チーム開発/ 2人/ フロントエンドPG</dd>
-                <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>メディアサイト開発業務</dt>
-                <dd>チーム開発/ 2人/ フロントエンドPG</dd>
-                <dd>PHP, CodeIgniter, jQuery, MySQL</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>ソーシャルゲーム開発業務</dt>
-                <dd>チーム開発/ 8人/ アウトゲームPG</dd>
-                <dd>Vue.js, NodeJs, Jenkins, Redis, MongoDB</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>フリーランス人材メディアサービス開発業務</dt>
-                <dd>チーム開発/ 4人/ フロントエンド開発リーダー</dd>
-                <dd>Laravel, Vue.js, MySQL</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>大手電子機器メーカーのマニュアル管理システム開発業務</dt>
-                <dd>チーム開発/ 7人/ PM補佐・フロントエンド開発リーダー</dd>
-                <dd>AWS, Docker, Rails, TypeScript, Vue.js, MySQL</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>PR支援会社Webサイト開発業務</dt>
-                <dd>個人開発</dd>
-                <dd>microCMS, Next.js, GitHubActions</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>保育メディアサイト開発業務</dt>
-                <dd>個人開発</dd>
-                <dd>Docker, WordPress, PHP, JavaScript, CSS, HTML</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>撮影会社Webサイト開発業務</dt>
-                <dd>個人開発</dd>
-                <dd>HTML, TypeScript, CSS</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>Webアプリケーション開発</dt>
-                <dd>チーム開発/ 5人/ フロントエンド開発リーダー</dd>
-                <dd>Docker, Next.js, Rails, redis, MySQL, AWS, Sprite, Swagger</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>オウンドメディア開発</dt>
-                <dd>チーム開発/ 2人/ フロントエンド</dd>
-                <dd>Next.js, Vercel, microCMS</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>コーポレートサイト作成基盤/構築</dt>
-                <dd>チーム開発/ 2人/ フロントエンド</dd>
-                <dd>Gatsby.js, Netlify, microCMS</dd>
-              </dl>
-            </li>
-            <li>
-              <dl>
-                <dt>コーポレートサイト作成基盤/構築</dt>
-                <dd>チーム開発/ 2人/ フロントエンド</dd>
-                <dd>Gatsby.js, Netlify, microCMS</dd>
-              </dl>
-            </li>
-          </ul>
+          )) }
         </section>
 
       </section>
@@ -217,12 +168,11 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
         <p>問い合わせフォームをご利用ではない場合は下記連絡先にご連絡ください。</p>
 
         <ul>
-          <li>
-            <a href="mailto:me@tsuki-lab.net">me@tsuki-lab.net</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/hanetsuki_dev" target="_blank">Twitter</a>
-          </li>
+          { site.contact.map((item, i) => (
+            <li key={i}>
+              <a href={ item.href }>{ item.name }</a>
+            </li>
+          )) }
         </ul>
 
         <p>※ ご返信には最大3営業日ほどいただくことがございます。</p>
@@ -238,36 +188,60 @@ export const query = graphql`
       siteMetadata {
         title
         description
-      }
-    }
-    dataYaml {
-      author
-      title
-      message
-      skill {
-        name
-      }
-      links {
-        name
-        href
-      }
-    }
-    allHistoryOfDevelopmentYaml {
-      nodes {
-        year
-        name
-        type
-        role
-        member
-        skill {
+        author {
           name
+          title
+          message
+        }
+        links {
+          name
+          href
+        }
+        contact {
+          name
+          href
         }
       }
     }
-    allContactsYaml {
+    allNotion {
       nodes {
-        name
-        href
+        id
+        title
+        raw {
+          parent {
+            database_id
+          }
+        }
+        properties {
+          development_role {
+            value {
+              name
+            }
+          }
+          development_type {
+            value {
+              name
+            }
+          }
+          environments {
+            value {
+              name
+            }
+          }
+          job_type {
+            value {
+              name
+            }
+          }
+          member_count {
+            value
+          }
+          year_label {
+            value {
+              name
+            }
+          }
+        }
       }
     }
   }
