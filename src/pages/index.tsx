@@ -34,12 +34,6 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
     return acc
   }, [[], []] as [NotionNode[], NotionNode[]])
 
-  jobHistories.sort((a, b) => {
-    if (!a.properties.year_label) return 0
-    if (!b.properties.year_label) return 0
-    return a.properties.year_label.value < b.properties.year_label.value ? 1 : -1
-  })
-
   const jobHistory = jobHistories.reduce((acc, crr) => {
     if (!crr.properties.year_label) return acc
     if (acc[crr.properties.year_label.value.name]) {
@@ -50,7 +44,7 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
     return acc
   }, {} as Record<string, NotionNode[]>)
 
-  const years = Object.keys(jobHistory).sort((a, b) => a > b ? 1 : -1)
+  const jobHistoryYears = Object.keys(jobHistory).sort((a, b) => Number(a) > Number(b) ? -1 : 1)
 
   const parseJobHistory = (notion: NotionNode) => {
     let str = ''
@@ -118,7 +112,7 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
 
         <section>
           <h3>job history</h3>
-          { years.map(year => (
+          { jobHistoryYears.map(year => (
             <>
               <h4>{ year }</h4>
               <ul>
@@ -127,7 +121,7 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
                     <dl>
                       <dt>{ value.title }</dt>
                       <dd>{ parseJobHistory(value) }</dd>
-                      <dd>{ value.properties.environments?.value.map(v => v.name).join(', ') }</dd>
+                      <dd>{ value.properties.environments?.value.sort().map(v => v.name).join(', ') }</dd>
                     </dl>
                   </li>
                 )) }
