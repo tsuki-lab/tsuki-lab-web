@@ -46,6 +46,12 @@ module.exports = {
         icon: 'src/images/icon.png'
       }
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.tsuki-lab.net`,
+      }
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,

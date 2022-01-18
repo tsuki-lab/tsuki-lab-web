@@ -5746,6 +5746,13 @@ gatsby-page-utils@^2.4.0:
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
+gatsby-plugin-canonical-urls@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-canonical-urls/-/gatsby-plugin-canonical-urls-4.5.0.tgz#9c053316e9d5836445b2eb9b5b36f0d7087fbdfb"
+  integrity sha512-wJn1PFOIwEBuYoOC2fAvCWgSFRcF+w9gWXbaQtWCRjXK0BOxSMbPPD8tpqMW5htcBcyaRU1dtkPkG8z7rhgNbA==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+
 gatsby-plugin-google-tagmanager@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-4.4.0.tgz#f3b7b8882bcd3995a4db3f587b7dac86083f1997"
