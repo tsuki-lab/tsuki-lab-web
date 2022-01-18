@@ -1,12 +1,17 @@
 @import 'sakura.css/scss/sakura';
 
 * {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+  font-family: 'Noto sans', sans-serif !important;
+}
+
+h1 {
+  font-family: 'Trebuchet MS' !important;
 }
 
 h2,
 h3 {
   border-bottom: 1px #363636 dashed;
+  font-family: 'Trebuchet MS' !important;
 }
 
 dt {
