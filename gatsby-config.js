@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'tsuki lab',
     description: 'Jamstackが好きなフロントエンドエンジニアのサイト',
+    siteUrl: `https://www.tsuki-lab.net`,
     author: {
       name: 'hanetsuki',
       title: 'クリエイター',
@@ -49,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://www.tsuki-lab.net`,
+        siteUrl: `https://www.tsuki-lab.net/`,
       }
     },
     `gatsby-plugin-sass`,
