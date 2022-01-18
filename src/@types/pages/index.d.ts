@@ -34,6 +34,11 @@ type NotionNode = {
     job_type: NotionPropertiesValue
     member_count: NotionPropertiesValue<number>
     year_label: NotionPropertiesValue
+    development_between: {
+      value: {
+        start: string
+      }
+    }
   }
   raw: {
     parent: {

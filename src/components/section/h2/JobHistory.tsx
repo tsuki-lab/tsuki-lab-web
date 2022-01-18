@@ -38,10 +38,14 @@ export const JobHistory: React.VFC<Props> = ({ jobHistories }) => {
     <section>
       <h2>Job history</h2>
       { jobHistoryYears.map(year => (
-        <>
+        <section key={year}>
           <h3>{ year }</h3>
           <ul>
-            { jobHistory[year].map(value => (
+            { jobHistory[year].sort((a, b) => {
+              const aDate = new Date(a.properties.development_between.value.start)
+              const bDate = new Date(b.properties.development_between.value.start)
+              return bDate.getTime() - aDate.getTime()
+            }).map(value => (
               <li key={value.id}>
                 <dl>
                   <dt>{ value.title }</dt>
@@ -51,7 +55,7 @@ export const JobHistory: React.VFC<Props> = ({ jobHistories }) => {
               </li>
             )) }
           </ul>
-        </>
+        </section>
       )) }
     </section>
   )
