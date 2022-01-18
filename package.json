@@ -4,7 +4,6 @@
   "version": "0.4.2",
   "dependencies": {
     "@formspree/react": "^2.2.4",
-    "dayjs": "^1.10.7",
     "gatsby": "^4.4.0",
     "gatsby-plugin-canonical-urls": "^4.5.0",
     "gatsby-plugin-google-tagmanager": "^4.4.0",
