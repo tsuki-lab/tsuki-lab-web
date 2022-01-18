@@ -36,7 +36,7 @@ export const JobHistory: React.VFC<Props> = ({ jobHistories }) => {
   }
   return (
     <section>
-      <h2>Job history</h2>
+      <h2>job history</h2>
       { jobHistoryYears.map(year => (
         <section key={year}>
           <h3>{ year }</h3>

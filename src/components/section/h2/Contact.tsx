@@ -13,7 +13,7 @@ export const Contact: React.VFC<Props> = ({ contact }) => {
 
   return (
     <section>
-      <h2>Contact</h2>
+      <h2>contact</h2>
 
       <div className="contact-form">
         {
