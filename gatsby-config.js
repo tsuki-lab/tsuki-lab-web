@@ -45,9 +45,13 @@ module.exports = {
         name: 'tsuki lab',
         short_name: 'tsuki lab',
         start_url: '/',
+        background_color: '#f9f9f9',
+        theme_color: '#0b6b7c',
+        display: 'standalone',
         icon: 'src/images/icon.png'
       }
     },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
