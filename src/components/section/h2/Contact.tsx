@@ -44,7 +44,7 @@ export const Contact: React.VFC<Props> = ({ contact }) => {
       <ul>
         { contact.map((item, i) => (
           <li key={i}>
-            <a href={ item.href }>{ item.name }</a>
+            <a href={ item.href } target="_blank" rel="noopener">{ item.name }</a>
           </li>
         )) }
       </ul>

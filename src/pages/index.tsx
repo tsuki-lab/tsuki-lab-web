@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/index.scss';
 import { graphql, PageProps } from 'gatsby';
 import { Contact } from '@/components/section/h2/Contact';
 import { JobHistory } from '@/components/section/h2/JobHistory';

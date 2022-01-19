@@ -14,7 +14,7 @@ export const Links: React.VFC<Props> = ({ links }) => {
       <ul className="sns-list">
         { links.map((link, i) => (
           <li key={i}>
-            <a href={link?.href} target="_blank">
+            <a href={link?.href} target="_blank" rel="noopener">
               { link?.name }
             </a>
           </li>
