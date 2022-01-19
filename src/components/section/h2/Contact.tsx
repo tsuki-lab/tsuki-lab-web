@@ -41,7 +41,7 @@ export const Contact: React.VFC<Props> = ({ contact }) => {
 
       <p>問い合わせフォームをご利用ではない場合は下記連絡先にご連絡ください。</p>
 
-      <ul>
+      <ul className='contact-list'>
         { contact.map((item, i) => (
           <li key={i}>
             <a href={ item.href } target="_blank" rel="noopener">{ item.name }</a>
