@@ -1,6 +1,10 @@
 {
   "include": ["./src/**/*"],
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "es2017"],

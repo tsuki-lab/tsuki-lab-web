@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/index.scss';
 import { graphql, PageProps } from 'gatsby';
-import { Contact } from '../components/section/h2/Contact';
-import { JobHistory } from '../components/section/h2/JobHistory';
-import { About } from '../components/section/h2/About';
-import { Seo } from '../components/Seo';
+import { Contact } from '@/components/section/h2/Contact';
+import { JobHistory } from '@/components/section/h2/JobHistory';
+import { About } from '@/components/section/h2/About';
+import { Seo } from '@/components/Seo';
 
 const NOTION_DATABASE = {
   SKILL: process.env.GATSBY_NOTION_DATABASE_SKILL,

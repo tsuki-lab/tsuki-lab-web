@@ -53,6 +53,15 @@ module.exports = {
         siteUrl: `https://www.tsuki-lab.net/`,
       }
     },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          '@': 'src'
+        },
+        extensions: [ 'tsx', 'ts', 'scss' ]
+      }
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,

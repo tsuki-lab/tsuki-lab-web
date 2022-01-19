@@ -1,7 +1,7 @@
 import React from 'react'
-import { Links, Props as LinksProps } from '../h3/Links'
-import { Skill, Props as SkillProps } from '../h3/Skill'
-import authorIcon from '../../../images/icon.png';
+import { Links, Props as LinksProps } from '@/components/section/h3/Links'
+import { Skill, Props as SkillProps } from '@/components/section/h3/Skill'
+import authorIcon from '@/images/icon.png';
 
 export type Props = LinksProps & SkillProps & {
   author: {
