@@ -38,6 +38,7 @@ module.exports = {
     ]
   },
   plugins: [
+    `gatsby-plugin-minify`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
