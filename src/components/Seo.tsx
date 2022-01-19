@@ -14,8 +14,6 @@ type SeoType = {
 }
 
 export const Seo: React.VFC = () => {
-  const LANGUAGE = "ja_JP"
-
   const { site: { siteMetadata } } = useStaticQuery<SeoType>(
     graphql`
       query Seo {
@@ -32,7 +30,7 @@ export const Seo: React.VFC = () => {
 
   return (
     <Helmet
-      htmlAttributes={{ lang: LANGUAGE }}
+      htmlAttributes={{ lang: 'ja' }}
       title={siteMetadata.title}
       meta={[
         {
@@ -57,7 +55,7 @@ export const Seo: React.VFC = () => {
         },
         {
           property: `og:locale`,
-          content: LANGUAGE,
+          content: `ja_JP`,
         },
         {
           property: `og:url`,
