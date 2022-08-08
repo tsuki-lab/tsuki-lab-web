@@ -1,7 +1,7 @@
 import React from 'react'
 import { Links, Props as LinksProps } from '@/components/section/h3/Links'
 import { Skill, Props as SkillProps } from '@/components/section/h3/Skill'
-import authorIcon from '@/images/icon.png';
+import { StaticImage } from 'gatsby-plugin-image';
 
 export type Props = LinksProps & SkillProps & {
   author: {
@@ -17,7 +17,7 @@ export const About: React.VFC<Props> = ({ skills, links, author }) => {
       <h2>about me</h2>
 
       <div className="author">
-        <img className="author-icon" src={authorIcon} alt=""  width="75" height="75" />
+        <StaticImage className="author-icon" src="../../../images/icon.png" alt="hanetsuki"  width={75} height={75} />
         <div>
           <p className="author-name">{ author.name  }</p>
           <p className="author-title">{ author.title }</p>

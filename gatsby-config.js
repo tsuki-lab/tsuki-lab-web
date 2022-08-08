@@ -72,20 +72,20 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-source-notion-api`,
-      options: {
-        token: process.env.NOTION_INTEGRATION_TOKEN,
-        databaseId: process.env.GATSBY_NOTION_DATABASE_JOB_HISTORY
-      },
-    },
-    {
-      resolve: `gatsby-source-notion-api`,
-      options: {
-        token: process.env.NOTION_INTEGRATION_TOKEN,
-        databaseId: process.env.GATSBY_NOTION_DATABASE_SKILL
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-notion-api`,
+    //   options: {
+    //     token: process.env.NOTION_INTEGRATION_TOKEN,
+    //     databaseId: process.env.GATSBY_NOTION_DATABASE_JOB_HISTORY
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-notion-api`,
+    //   options: {
+    //     token: process.env.NOTION_INTEGRATION_TOKEN,
+    //     databaseId: process.env.GATSBY_NOTION_DATABASE_SKILL
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
