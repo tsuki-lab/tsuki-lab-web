@@ -47,9 +47,9 @@ const IndexPage: React.FC<PageProps<IndexDataQuery>> = ({
         links={site.links}
       />
 
-      <JobHistory jobHistories={jobHistories} />
+      {/* <JobHistory jobHistories={jobHistories} /> */}
 
-      <Contact contact={site.contact} />
+      {/* <Contact contact={site.contact} /> */}
     </main>
   );
 }
