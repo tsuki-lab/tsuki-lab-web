@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         name: 'Illust',
-        href: 'https://www.tsuki-lab.art/'
+        href: 'https://art.tsuki-lab.net/'
       }
     ],
     contact: [
